@@ -1,0 +1,19 @@
+{
+  "name": "wetube",
+  "version": "1.0.0",
+  "description": "create wetube(youtube clone) with Vanila-js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jentleshin/wetube.git"
+  },
+  "author": "jentleshin <jentleshin@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jentleshin/wetube/issues"
+  },
+  "homepage": "https://github.com/jentleshin/wetube#readme"
+}
