@@ -3,16 +3,8 @@
   "version": "1.0.0",
   "description": "create wetube(youtube clone) with Vanila-js",
   "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jentleshin/wetube.git"
-  },
   "author": "jentleshin <jentleshin@gmail.com>",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/jentleshin/wetube/issues"
-  },
-  "homepage": "https://github.com/jentleshin/wetube#readme",
   "dependencies": {
     "express": "^4.17.1"
   },
