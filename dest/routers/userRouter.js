@@ -7,19 +7,18 @@ exports["default"] = exports.userRouter = void 0;
 
 var _express = _interopRequireDefault(require("express"));
 
+var _userController = require("../controllers/userController");
+
+var _routes = _interopRequireDefault(require("./routes"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var userRouter = _express["default"].Router();
 
 exports.userRouter = userRouter;
-userRouter.get("/", function (req, res) {
-  return res.send("user index");
-});
-userRouter.get("/edit", function (req, res) {
-  return res.send("user edit");
-});
-userRouter.get("/password", function (req, res) {
-  return res.send("user password");
-});
+userRouter.get("/", _userController.users);
+userRouter.get(_routes["default"].userDetail, _userController.userDetail);
+userRouter.get(_routes["default"].editProfile, _userController.editProfile);
+userRouter.get(_routes["default"].changePassword, _userController.changePassword);
 var _default = userRouter;
 exports["default"] = _default;

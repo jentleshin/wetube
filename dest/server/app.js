@@ -15,6 +15,8 @@ var _cookieParser = _interopRequireDefault(require("cookie-parser"));
 
 var _bodyParser = _interopRequireDefault(require("body-parser"));
 
+var _routes = _interopRequireDefault(require("../routers/routes"));
+
 var _userRouter = _interopRequireDefault(require("../routers/userRouter"));
 
 var _videoRouter = _interopRequireDefault(require("../routers/videoRouter"));
@@ -32,7 +34,7 @@ app.use(_bodyParser["default"].urlencoded({
 app.use((0, _helmet["default"])());
 app.use((0, _morgan["default"])("dev"));
 app.use("/", _globalRouter["default"]);
-app.use("/user", _userRouter["default"]);
-app.use("/video", _videoRouter["default"]);
+app.use(_routes["default"].users, _userRouter["default"]);
+app.use(_routes["default"].videos, _videoRouter["default"]);
 var _default = app;
 exports["default"] = _default;
