@@ -12,7 +12,7 @@ import { localsMiddleware } from "./middlewares";
 
 const app = express();
 
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false }));
 app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
 app.use(cookieParser());

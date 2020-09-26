@@ -3,11 +3,14 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.deleteVideo = exports.editVideo = exports.videoDetail = exports.upload = exports.videos = exports.search = exports.home = void 0;
+exports.deleteVideo = exports.editVideo = exports.videoDetail = exports.upload = exports.search = exports.home = void 0;
+
+var _db = require("../db");
 
 var home = function home(req, res) {
-  return res.render("home", {
-    pageTitle: "Home"
+  res.render("home", {
+    pageTitle: "Home",
+    videos: _db.videos
   });
 };
 
@@ -22,14 +25,6 @@ var search = function search(req, res) {
 };
 
 exports.search = search;
-
-var videos = function videos(req, res) {
-  return res.render("videos", {
-    pageTitle: "Videos"
-  });
-};
-
-exports.videos = videos;
 
 var upload = function upload(req, res) {
   return res.render("upload", {

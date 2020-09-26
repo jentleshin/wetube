@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changePassword = exports.editProfile = exports.userDetail = exports.users = exports.logout = exports.login = exports.join = void 0;
+exports.changePassword = exports.editProfile = exports.userDetail = exports.logout = exports.login = exports.join = void 0;
 
 var join = function join(req, res) {
   return res.render("join", {
@@ -28,14 +28,6 @@ var logout = function logout(req, res) {
 };
 
 exports.logout = logout;
-
-var users = function users(req, res) {
-  return res.render("users", {
-    pageTitle: "Users"
-  });
-};
-
-exports.users = users;
 
 var userDetail = function userDetail(req, res) {
   return res.render("userDetail", {

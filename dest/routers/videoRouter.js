@@ -15,7 +15,6 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var videoRouter = _express["default"].Router();
 
-videoRouter.get("/", _videoController.videos);
 videoRouter.get(_routes["default"].upload, _videoController.upload);
 videoRouter.get(_routes["default"].videoDetail, _videoController.videoDetail);
 videoRouter.get(_routes["default"].editVideo, _videoController.editVideo);

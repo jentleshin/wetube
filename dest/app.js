@@ -28,7 +28,9 @@ var _middlewares = require("./middlewares");
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = (0, _express["default"])();
-app.use((0, _helmet["default"])());
+app.use((0, _helmet["default"])({
+  contentSecurityPolicy: false
+}));
 app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
 app.use((0, _cookieParser["default"])());
