@@ -1,7 +1,7 @@
 header.header
     .header__column
         a(href=routes.home)
-            i.material-icons play_circle_filled
+            i.fab.fa-youtube
     .header__column
         form(action=routes.search, method="get")
             input(type="text", placeholder="Search by term...", name="term")
@@ -10,4 +10,4 @@ header.header
             li
                 a(href=routes.join) Join
             li 
-                a(href=routes.login) Logged in
+                a(href=routes.login) Log in

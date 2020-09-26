@@ -17,8 +17,8 @@ var userRouter = _express["default"].Router();
 
 exports.userRouter = userRouter;
 userRouter.get("/", _userController.users);
-userRouter.get(_routes["default"].userDetail, _userController.userDetail);
 userRouter.get(_routes["default"].editProfile, _userController.editProfile);
 userRouter.get(_routes["default"].changePassword, _userController.changePassword);
+userRouter.get(_routes["default"].userDetail, _userController.userDetail);
 var _default = userRouter;
 exports["default"] = _default;
