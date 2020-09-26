@@ -1,28 +1,28 @@
-import gulp, { dest } from "gulp";
-import gpug from "gulp-pug";
+import gulp from "gulp";
 import del from "del";
 import babel from "gulp-babel";
 import nodemon from "gulp-nodemon";
+import gpug from "gulp-pug";
 import browserSync from "browser-sync";
 
 const routes = {
   dest: "dest/",
   pug: {
-    src: "src/pug/**/*.pug",
-    dest: "dest/pug/",
+    src: "src/views/**/*.pug",
+    watch: "src/views/**/*.pug",
+    dest: "dest/views/",
   },
   js: {
     src: "src/**/*.js",
     watch: "src/**/*.js",
     dest: "dest/",
-    initFile: "dest/server/init.js",
+    initFile: "dest/init.js",
   },
 };
 
 const clear = () => del("dest/*");
 
-const pug = () =>
-  gulp.src(routes.pug.src).pipe(gpug()).pipe(gulp.dest(routes.pug.dest));
+const pug = () => gulp.src(routes.pug.src).pipe(gulp.dest(routes.pug.dest));
 
 const babelServer = () =>
   gulp
@@ -53,6 +53,7 @@ const startNodemon = (cb) => {
 
 const watch = (cb) => {
   gulp.watch(routes.js.watch, babelServer);
+  gulp.watch(routes.pug.watch, pug);
   cb();
 };
 

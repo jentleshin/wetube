@@ -6,43 +6,57 @@ Object.defineProperty(exports, "__esModule", {
 exports.changePassword = exports.editProfile = exports.userDetail = exports.users = exports.logout = exports.login = exports.join = void 0;
 
 var join = function join(req, res) {
-  return res.send("join");
+  return res.render("join", {
+    pageTitle: "Join"
+  });
 };
 
 exports.join = join;
 
 var login = function login(req, res) {
-  return res.send("login");
+  return res.render("login", {
+    pageTitle: "Log in"
+  });
 };
 
 exports.login = login;
 
 var logout = function logout(req, res) {
-  return res.send("logout");
+  return res.render("logout", {
+    pageTitle: "Log out"
+  });
 };
 
 exports.logout = logout;
 
 var users = function users(req, res) {
-  return res.send("users");
+  return res.render("users", {
+    pageTitle: "Users"
+  });
 };
 
 exports.users = users;
 
 var userDetail = function userDetail(req, res) {
-  return res.send("userDetail");
+  return res.render("userDetail", {
+    pageTitle: "User Detail"
+  });
 };
 
 exports.userDetail = userDetail;
 
 var editProfile = function editProfile(req, res) {
-  return res.send("editProfile");
+  return res.render("editProfile", {
+    pageTitle: "Edit Profile"
+  });
 };
 
 exports.editProfile = editProfile;
 
 var changePassword = function changePassword(req, res) {
-  return res.send("changePassword");
+  return res.render("changePassword", {
+    pageTitle: "Change Password"
+  });
 };
 
 exports.changePassword = changePassword;
