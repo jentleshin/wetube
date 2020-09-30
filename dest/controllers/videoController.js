@@ -5,8 +5,6 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.deleteVideo = exports.editVideo = exports.videoDetail = exports.postUpload = exports.getUpload = exports.search = exports.home = void 0;
 
-var _db = require("../db");
-
 var _routes = _interopRequireDefault(require("../routers/routes"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -14,7 +12,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var home = function home(req, res) {
   res.render("home", {
     pageTitle: "Home",
-    videos: _db.videos
+    videos: videos
   });
 };
 
@@ -25,7 +23,7 @@ var search = function search(req, res) {
   res.render("search", {
     pageTitle: "Search",
     searchingBy: searchingBy,
-    videos: _db.videos
+    videos: videos
   });
 };
 

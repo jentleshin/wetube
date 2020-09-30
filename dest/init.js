@@ -1,13 +1,21 @@
 "use strict";
 
+var _dotenv = _interopRequireDefault(require("dotenv"));
+
+require("./db");
+
 var _app = _interopRequireDefault(require("./app"));
+
+require("./models/Video");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-var PORT = 4000;
+_dotenv["default"].config();
+
+var PORT = process.env.PORT;
 
 var handleListening = function handleListening() {
   return console.log("Listening on https://localhost:".concat(PORT));
 };
 
-_app["default"].listen(4000, handleListening);
+_app["default"].listen(PORT, handleListening);
