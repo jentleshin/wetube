@@ -12,7 +12,7 @@ var _multer = _interopRequireDefault(require("multer"));
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var multerVideo = (0, _multer["default"])({
-  dest: "videos/"
+  dest: "uploads/videos/"
 });
 var uploadVideo = multerVideo.single("videoFile");
 exports.uploadVideo = uploadVideo;

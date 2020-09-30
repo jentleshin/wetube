@@ -101,16 +101,12 @@ var postUpload = /*#__PURE__*/function () {
 
           case 3:
             newVideo = _context2.sent;
-            console.log(newVideo); // const { body } = req;
-            //upload and save video
-            //fake id
-
             res.redirect(_routes["default"].videoDetail({
               fullRoute: true,
               id: newVideo.id
             }));
 
-          case 6:
+          case 5:
           case "end":
             return _context2.stop();
         }

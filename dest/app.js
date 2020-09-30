@@ -40,6 +40,7 @@ app.use(_bodyParser["default"].urlencoded({
 }));
 app.use((0, _morgan["default"])("dev"));
 app.use(_middlewares.localsMiddleware);
+app.use("/uploads", _express["default"]["static"]("uploads"));
 app.use("/", _globalRouter["default"]);
 app.use(_routes["default"].users, _userRouter["default"]);
 app.use(_routes["default"].videos, _videoRouter["default"]);
