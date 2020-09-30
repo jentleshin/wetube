@@ -1,7 +1,15 @@
 import routes from "../routers/routes";
+import Video from "../models/Video";
+import regeneratorRuntime from "regenerator-runtime"; //how?
 
-export const home = (req, res) => {
-  res.render("home", { pageTitle: "Home", videos });
+export const home = async (req, res) => {
+  try {
+    const videos = await Video.find({}); //what does it mean
+    res.render("home", { pageTitle: "Home", videos });
+  } catch (error) {
+    console.log(error);
+    res.render("home", { pageTitle: "Home", videos: [] });
+  }
 };
 
 export const search = (req, res) => {

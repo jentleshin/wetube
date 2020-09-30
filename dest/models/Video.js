@@ -26,7 +26,11 @@ var VideoSchema = new _mongoose["default"].Schema({
   createdAt: {
     type: Date,
     "default": Date.now
-  }
+  },
+  comments: [{
+    type: _mongoose["default"].Schema.Types.ObjectId,
+    ref: "Video"
+  }]
 });
 
 var model = _mongoose["default"].model("Video", VideoSchema);
