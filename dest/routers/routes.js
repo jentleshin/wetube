@@ -13,8 +13,8 @@ var SEARCH = "/search"; //Users
 
 var USERS = "/users";
 var USER_DETAIL = "/:id";
-var EDIT_PROFILE = "/edit-profile";
-var CHANGE_PASSWORD = "/change-password"; //Videos
+var EDIT_PROFILE = "/:id/edit-profile";
+var CHANGE_PASSWORD = "/:id/change-password"; //Videos
 
 var VIDEOS = "/videos";
 var UPLOAD = "/upload";
@@ -31,16 +31,55 @@ var routes = {
   //   },
   //   user: {
   users: USERS,
-  userDetail: USER_DETAIL,
-  editProfile: EDIT_PROFILE,
-  changePassword: CHANGE_PASSWORD,
+  userDetail: function userDetail() {
+    var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref.fullRoute,
+        id = _ref.id;
+
+    return fullRoute && id ? "/users/".concat(id) : USER_DETAIL;
+  },
+  editProfile: function editProfile() {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref2.fullRoute,
+        id = _ref2.id;
+
+    return fullRoute ? "/users/".concat(id, "/edit-profile") : EDIT_PROFILE;
+  },
+  changePassword: function changePassword() {
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref3.fullRoute,
+        id = _ref3.id;
+
+    return fullRoute ? "/users/".concat(id, "/change-password") : CHANGE_PASSWORD;
+  },
   //   },
   //   video: {
   videos: VIDEOS,
-  upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
-  editVideo: EDIT_VIDEO,
-  deleteVideo: DELETE_VIDEO //   },
+  upload: function upload() {
+    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref4.fullRoute;
+
+    return fullRoute ? "/videos".concat(UPLOAD) : UPLOAD;
+  },
+  videoDetail: function videoDetail() {
+    var _ref5 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref5.fullRoute,
+        id = _ref5.id;
+
+    return fullRoute && id ? "/videos/".concat(id) : VIDEO_DETAIL;
+  },
+  editVideo: function editVideo() {
+    var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref6.fullRoute;
+
+    return fullRoute ? "/videos".concat(EDIT_VIDEO) : EDIT_VIDEO;
+  },
+  deleteVideo: function deleteVideo() {
+    var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        fullRoute = _ref7.fullRoute;
+
+    return fullRoute ? "/videos".concat(DELETE_VIDEO) : DELETE_VIDEO;
+  } //   },
 
 };
 var _default = routes;

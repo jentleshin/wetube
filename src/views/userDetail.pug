@@ -2,3 +2,4 @@ extends layouts/main.pug
 
 block content
     p user detail
+    a.edit-profile__link(href=routes.editProfile({fullRoute: true, id: user.id})) Edit Profile

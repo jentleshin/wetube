@@ -12,6 +12,11 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 var localsMiddleware = function localsMiddleware(req, res, next) {
   res.locals.siteName = "Wetube";
   res.locals.routes = _routes["default"];
+  res.locals.user = {
+    isAuthenticated: true,
+    name: "haha123",
+    id: "123123"
+  };
   next();
 };
 

@@ -1,9 +1,9 @@
 extends layouts/main.pug
 
 block content
-    form(action=`${routes.videos}${routes.upload}`, method="post")
-    label(for="file") Video File
-    input(type="file", id="file", name="file")
-    input(type="text", placeHolder="Title", name="title")
-    textarea(placeHolder="Descrition", name="description")
-    input(type="submit", value="Update Video")
+    form(action=routes.upload({fullRoute: true}), method="post")
+        label(for="file") Video File
+        input(type="file", id="file", name="file", required=true)
+        input(type="text", placeHolder="Title", name="title", required=true)
+        textarea(placeHolder="Descrition", name="description", required=true)
+        input(type="submit", value="Update Video")

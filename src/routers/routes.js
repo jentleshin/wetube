@@ -8,8 +8,8 @@ const SEARCH = "/search";
 //Users
 const USERS = "/users";
 const USER_DETAIL = "/:id";
-const EDIT_PROFILE = "/edit-profile";
-const CHANGE_PASSWORD = "/change-password";
+const EDIT_PROFILE = "/:id/edit-profile";
+const CHANGE_PASSWORD = "/:id/change-password";
 
 //Videos
 const VIDEOS = "/videos";
@@ -28,16 +28,22 @@ const routes = {
   //   },
   //   user: {
   users: USERS,
-  userDetail: USER_DETAIL,
-  editProfile: EDIT_PROFILE,
-  changePassword: CHANGE_PASSWORD,
+  userDetail: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/users/${id}` : USER_DETAIL,
+  editProfile: ({ fullRoute, id } = {}) =>
+    fullRoute ? `/users/${id}/edit-profile` : EDIT_PROFILE,
+  changePassword: ({ fullRoute, id } = {}) =>
+    fullRoute ? `/users/${id}/change-password` : CHANGE_PASSWORD,
   //   },
   //   video: {
   videos: VIDEOS,
-  upload: UPLOAD,
-  videoDetail: VIDEO_DETAIL,
-  editVideo: EDIT_VIDEO,
-  deleteVideo: DELETE_VIDEO,
+  upload: ({ fullRoute } = {}) => (fullRoute ? `/videos${UPLOAD}` : UPLOAD),
+  videoDetail: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/videos/${id}` : VIDEO_DETAIL,
+  editVideo: ({ fullRoute } = {}) =>
+    fullRoute ? `/videos${EDIT_VIDEO}` : EDIT_VIDEO,
+  deleteVideo: ({ fullRoute } = {}) =>
+    fullRoute ? `/videos${DELETE_VIDEO}` : DELETE_VIDEO,
   //   },
 };
 
