@@ -3,11 +3,19 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.localsMiddleware = void 0;
+exports.localsMiddleware = exports.uploadVideo = void 0;
 
 var _routes = _interopRequireDefault(require("./routers/routes"));
 
+var _multer = _interopRequireDefault(require("multer"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var multerVideo = (0, _multer["default"])({
+  dest: "videos/"
+});
+var uploadVideo = multerVideo.single("videoFile");
+exports.uploadVideo = uploadVideo;
 
 var localsMiddleware = function localsMiddleware(req, res, next) {
   res.locals.siteName = "Wetube";

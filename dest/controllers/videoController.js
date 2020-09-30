@@ -83,18 +83,45 @@ var getUpload = function getUpload(req, res) {
 
 exports.getUpload = getUpload;
 
-var postUpload = function postUpload(req, res) {
-  var _req$body = req.body,
-      file = _req$body.file,
-      title = _req$body.title,
-      description = _req$body.description; //upload and save video
-  //fake id
+var postUpload = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee2(req, res) {
+    var _req$body, title, description, path, newVideo;
 
-  res.redirect(_routes["default"].videoDetail({
-    fullRoute: true,
-    id: 11111
+    return _regeneratorRuntime["default"].wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            _req$body = req.body, title = _req$body.title, description = _req$body.description, path = req.file.path;
+            _context2.next = 3;
+            return _Video["default"].create({
+              fileUrl: path,
+              title: title,
+              description: description
+            });
+
+          case 3:
+            newVideo = _context2.sent;
+            console.log(newVideo); // const { body } = req;
+            //upload and save video
+            //fake id
+
+            res.redirect(_routes["default"].videoDetail({
+              fullRoute: true,
+              id: newVideo.id
+            }));
+
+          case 6:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2);
   }));
-};
+
+  return function postUpload(_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 exports.postUpload = postUpload;
 
