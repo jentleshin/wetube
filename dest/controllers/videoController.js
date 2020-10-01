@@ -260,42 +260,38 @@ var deleteVideo = /*#__PURE__*/function () {
         switch (_context6.prev = _context6.next) {
           case 0:
             id = req.params.id;
-            console.log(id);
-            _context6.prev = 2;
-            _context6.next = 5;
+            _context6.prev = 1;
+            _context6.next = 4;
             return _Video["default"].findByIdAndDelete(id);
 
-          case 5:
+          case 4:
             _yield$Video$findById = _context6.sent;
             fileUrl = _yield$Video$findById.fileUrl;
-            console.log(fileUrl);
 
             (function () {
               try {
                 _fs.promises.unlink(fileUrl);
-
-                console.log("====succsessfully unlink");
               } catch (error) {
                 console.error(error);
               }
             })();
 
             res.redirect(_routes["default"].home);
-            _context6.next = 16;
+            _context6.next = 14;
             break;
 
-          case 12:
-            _context6.prev = 12;
-            _context6.t0 = _context6["catch"](2);
+          case 10:
+            _context6.prev = 10;
+            _context6.t0 = _context6["catch"](1);
             console.log(_context6.t0);
             res.redirect(_routes["default"].home); //TODO: add safe
 
-          case 16:
+          case 14:
           case "end":
             return _context6.stop();
         }
       }
-    }, _callee6, null, [[2, 12]]);
+    }, _callee6, null, [[1, 10]]);
   }));
 
   return function deleteVideo(_x11, _x12) {

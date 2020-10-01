@@ -87,15 +87,13 @@ export const deleteVideo = async (req, res) => {
   const {
     params: { id },
   } = req;
-  console.log(id);
+
   try {
     const { fileUrl } = await Video.findByIdAndDelete(id);
-    console.log(fileUrl);
 
     (() => {
       try {
         fs.unlink(fileUrl);
-        console.log("====succsessfully unlink");
       } catch (error) {
         console.error(error);
       }
