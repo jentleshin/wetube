@@ -11,13 +11,14 @@ var _Video = _interopRequireDefault(require("../models/Video"));
 
 var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
 
+var _videoRouter = _interopRequireDefault(require("../routers/videoRouter"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
-//how?
 var home = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee(req, res) {
     var _videos;
@@ -171,56 +172,78 @@ var videoDetail = /*#__PURE__*/function () {
 
 exports.videoDetail = videoDetail;
 
-var getEditVideo = function getEditVideo(req, res) {
-  var id = req.params.id;
-  res.render("editVideo", {
-    pageTitle: "Edit Video",
-    id: id
-  });
-};
-
-exports.getEditVideo = getEditVideo;
-
-var postEditVideo = /*#__PURE__*/function () {
+var getEditVideo = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee4(req, res) {
-    var _req$body2, title, description, id;
-
+    var id, video;
     return _regeneratorRuntime["default"].wrap(function _callee4$(_context4) {
       while (1) {
         switch (_context4.prev = _context4.next) {
           case 0:
-            _req$body2 = req.body, title = _req$body2.title, description = _req$body2.description;
             id = req.params.id;
-            _context4.prev = 2;
-            _context4.next = 5;
+            _context4.next = 3;
+            return _Video["default"].findById(id);
+
+          case 3:
+            video = _context4.sent;
+            res.render("editVideo", {
+              pageTitle: "Edit Video",
+              video: video
+            });
+
+          case 5:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4);
+  }));
+
+  return function getEditVideo(_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.getEditVideo = getEditVideo;
+
+var postEditVideo = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee5(req, res) {
+    var id, _req$body2, title, description;
+
+    return _regeneratorRuntime["default"].wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            id = req.params.id, _req$body2 = req.body, title = _req$body2.title, description = _req$body2.description;
+            _context5.prev = 1;
+            _context5.next = 4;
             return _Video["default"].findByIdAndUpdate(id, {
               title: title,
               description: description
             });
 
-          case 5:
+          case 4:
             res.redirect(_routes["default"].videoDetail({
               fullRoute: true,
               id: id
             }));
-            _context4.next = 11;
+            _context5.next = 10;
             break;
 
-          case 8:
-            _context4.prev = 8;
-            _context4.t0 = _context4["catch"](2);
-            console.log(_context4.t0); //where to go when error?
+          case 7:
+            _context5.prev = 7;
+            _context5.t0 = _context5["catch"](1);
+            console.log(_context5.t0); //where to go when error?
 
-          case 11:
+          case 10:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4, null, [[2, 8]]);
+    }, _callee5, null, [[1, 7]]);
   }));
 
-  return function postEditVideo(_x7, _x8) {
-    return _ref4.apply(this, arguments);
+  return function postEditVideo(_x9, _x10) {
+    return _ref5.apply(this, arguments);
   };
 }();
 

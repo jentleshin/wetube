@@ -1,6 +1,7 @@
 import routes from "../routers/routes";
 import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime"; //how?
+import videoRouter from "../routers/videoRouter";
 
 export const home = async (req, res) => {
   try {
@@ -53,16 +54,19 @@ export const videoDetail = async (req, res) => {
   }
 };
 
-export const getEditVideo = (req, res) => {
-  const id = req.params.id;
-  res.render("editVideo", { pageTitle: "Edit Video", id });
+export const getEditVideo = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  const video = await Video.findById(id);
+  res.render("editVideo", { pageTitle: "Edit Video", video });
 };
 
 export const postEditVideo = async (req, res) => {
   const {
+    params: { id },
     body: { title, description },
   } = req;
-  const id = req.params.id;
 
   try {
     await Video.findByIdAndUpdate(id, {
