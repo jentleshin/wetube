@@ -1,14 +1,13 @@
 import routes from "../routers/routes";
 import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime"; //how?
-import videoRouter from "../routers/videoRouter";
 
 //problemetic because it import whole promise
 import { promises as fs } from "fs";
 
 export const home = async (req, res) => {
   try {
-    const videos = await Video.find({}); //what does it mean
+    const videos = await Video.find({}).sort({ _id: -1 }); //what does it mean
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
@@ -16,11 +15,18 @@ export const home = async (req, res) => {
   }
 };
 
-export const search = (req, res) => {
+export const search = async (req, res) => {
   const {
     query: { term: searchingBy },
   } = req;
-  res.render("search", { pageTitle: "Search", searchingBy, videos });
+
+  try {
+    const videos = await Video.find({});
+    res.render("search", { pageTitle: "Search", searchingBy, videos });
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
 };
 
 export const getUpload = (req, res) =>

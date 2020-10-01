@@ -11,8 +11,6 @@ var _Video = _interopRequireDefault(require("../models/Video"));
 
 var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"));
 
-var _videoRouter = _interopRequireDefault(require("../routers/videoRouter"));
-
 var _fs = require("fs");
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -23,22 +21,23 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 var home = /*#__PURE__*/function () {
   var _ref = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee(req, res) {
-    var _videos;
-
+    var videos;
     return _regeneratorRuntime["default"].wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
           case 0:
             _context.prev = 0;
             _context.next = 3;
-            return _Video["default"].find({});
+            return _Video["default"].find({}).sort({
+              _id: -1
+            });
 
           case 3:
-            _videos = _context.sent;
+            videos = _context.sent;
             //what does it mean
             res.render("home", {
               pageTitle: "Home",
-              videos: _videos
+              videos: videos
             });
             _context.next = 11;
             break;
@@ -67,14 +66,46 @@ var home = /*#__PURE__*/function () {
 
 exports.home = home;
 
-var search = function search(req, res) {
-  var searchingBy = req.query.term;
-  res.render("search", {
-    pageTitle: "Search",
-    searchingBy: searchingBy,
-    videos: videos
-  });
-};
+var search = /*#__PURE__*/function () {
+  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee2(req, res) {
+    var searchingBy, videos;
+    return _regeneratorRuntime["default"].wrap(function _callee2$(_context2) {
+      while (1) {
+        switch (_context2.prev = _context2.next) {
+          case 0:
+            searchingBy = req.query.term;
+            _context2.prev = 1;
+            _context2.next = 4;
+            return _Video["default"].find({});
+
+          case 4:
+            videos = _context2.sent;
+            res.render("search", {
+              pageTitle: "Search",
+              searchingBy: searchingBy,
+              videos: videos
+            });
+            _context2.next = 12;
+            break;
+
+          case 8:
+            _context2.prev = 8;
+            _context2.t0 = _context2["catch"](1);
+            console.log(_context2.t0);
+            res.redirect(_routes["default"].home);
+
+          case 12:
+          case "end":
+            return _context2.stop();
+        }
+      }
+    }, _callee2, null, [[1, 8]]);
+  }));
+
+  return function search(_x3, _x4) {
+    return _ref2.apply(this, arguments);
+  };
+}();
 
 exports.search = search;
 
@@ -87,16 +118,16 @@ var getUpload = function getUpload(req, res) {
 exports.getUpload = getUpload;
 
 var postUpload = /*#__PURE__*/function () {
-  var _ref2 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee2(req, res) {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee3(req, res) {
     var _req$body, title, description, path, newVideo;
 
-    return _regeneratorRuntime["default"].wrap(function _callee2$(_context2) {
+    return _regeneratorRuntime["default"].wrap(function _callee3$(_context3) {
       while (1) {
-        switch (_context2.prev = _context2.next) {
+        switch (_context3.prev = _context3.next) {
           case 0:
             _req$body = req.body, title = _req$body.title, description = _req$body.description, path = req.file.path;
-            _context2.prev = 1;
-            _context2.next = 4;
+            _context3.prev = 1;
+            _context3.next = 4;
             return _Video["default"].create({
               fileUrl: path,
               title: title,
@@ -104,62 +135,20 @@ var postUpload = /*#__PURE__*/function () {
             });
 
           case 4:
-            newVideo = _context2.sent;
+            newVideo = _context3.sent;
             res.redirect(_routes["default"].videoDetail({
               fullRoute: true,
               id: newVideo.id
             }));
-            _context2.next = 11;
-            break;
-
-          case 8:
-            _context2.prev = 8;
-            _context2.t0 = _context2["catch"](1);
-            console.log(_context2.t0); //where to go?
-
-          case 11:
-          case "end":
-            return _context2.stop();
-        }
-      }
-    }, _callee2, null, [[1, 8]]);
-  }));
-
-  return function postUpload(_x3, _x4) {
-    return _ref2.apply(this, arguments);
-  };
-}();
-
-exports.postUpload = postUpload;
-
-var videoDetail = /*#__PURE__*/function () {
-  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee3(req, res) {
-    var id, video;
-    return _regeneratorRuntime["default"].wrap(function _callee3$(_context3) {
-      while (1) {
-        switch (_context3.prev = _context3.next) {
-          case 0:
-            id = req.params.id;
-            _context3.prev = 1;
-            _context3.next = 4;
-            return _Video["default"].findById(id);
-
-          case 4:
-            video = _context3.sent;
-            res.render("videoDetail", {
-              pageTitle: "Video Detail",
-              video: video
-            });
-            _context3.next = 12;
+            _context3.next = 11;
             break;
 
           case 8:
             _context3.prev = 8;
             _context3.t0 = _context3["catch"](1);
-            console.log(_context3.t0);
-            res.redirect(_routes["default"].home);
+            console.log(_context3.t0); //where to go?
 
-          case 12:
+          case 11:
           case "end":
             return _context3.stop();
         }
@@ -167,14 +156,14 @@ var videoDetail = /*#__PURE__*/function () {
     }, _callee3, null, [[1, 8]]);
   }));
 
-  return function videoDetail(_x5, _x6) {
+  return function postUpload(_x5, _x6) {
     return _ref3.apply(this, arguments);
   };
 }();
 
-exports.videoDetail = videoDetail;
+exports.postUpload = postUpload;
 
-var getEditVideo = /*#__PURE__*/function () {
+var videoDetail = /*#__PURE__*/function () {
   var _ref4 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee4(req, res) {
     var id, video;
     return _regeneratorRuntime["default"].wrap(function _callee4$(_context4) {
@@ -182,11 +171,53 @@ var getEditVideo = /*#__PURE__*/function () {
         switch (_context4.prev = _context4.next) {
           case 0:
             id = req.params.id;
-            _context4.next = 3;
+            _context4.prev = 1;
+            _context4.next = 4;
+            return _Video["default"].findById(id);
+
+          case 4:
+            video = _context4.sent;
+            res.render("videoDetail", {
+              pageTitle: "Video Detail",
+              video: video
+            });
+            _context4.next = 12;
+            break;
+
+          case 8:
+            _context4.prev = 8;
+            _context4.t0 = _context4["catch"](1);
+            console.log(_context4.t0);
+            res.redirect(_routes["default"].home);
+
+          case 12:
+          case "end":
+            return _context4.stop();
+        }
+      }
+    }, _callee4, null, [[1, 8]]);
+  }));
+
+  return function videoDetail(_x7, _x8) {
+    return _ref4.apply(this, arguments);
+  };
+}();
+
+exports.videoDetail = videoDetail;
+
+var getEditVideo = /*#__PURE__*/function () {
+  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee5(req, res) {
+    var id, video;
+    return _regeneratorRuntime["default"].wrap(function _callee5$(_context5) {
+      while (1) {
+        switch (_context5.prev = _context5.next) {
+          case 0:
+            id = req.params.id;
+            _context5.next = 3;
             return _Video["default"].findById(id);
 
           case 3:
-            video = _context4.sent;
+            video = _context5.sent;
             res.render("editVideo", {
               pageTitle: "Edit Video",
               video: video
@@ -194,30 +225,30 @@ var getEditVideo = /*#__PURE__*/function () {
 
           case 5:
           case "end":
-            return _context4.stop();
+            return _context5.stop();
         }
       }
-    }, _callee4);
+    }, _callee5);
   }));
 
-  return function getEditVideo(_x7, _x8) {
-    return _ref4.apply(this, arguments);
+  return function getEditVideo(_x9, _x10) {
+    return _ref5.apply(this, arguments);
   };
 }();
 
 exports.getEditVideo = getEditVideo;
 
 var postEditVideo = /*#__PURE__*/function () {
-  var _ref5 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee5(req, res) {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee6(req, res) {
     var id, _req$body2, title, description;
 
-    return _regeneratorRuntime["default"].wrap(function _callee5$(_context5) {
+    return _regeneratorRuntime["default"].wrap(function _callee6$(_context6) {
       while (1) {
-        switch (_context5.prev = _context5.next) {
+        switch (_context6.prev = _context6.next) {
           case 0:
             id = req.params.id, _req$body2 = req.body, title = _req$body2.title, description = _req$body2.description;
-            _context5.prev = 1;
-            _context5.next = 4;
+            _context6.prev = 1;
+            _context6.next = 4;
             return _Video["default"].findByIdAndUpdate(id, {
               title: title,
               description: description
@@ -228,44 +259,44 @@ var postEditVideo = /*#__PURE__*/function () {
               fullRoute: true,
               id: id
             }));
-            _context5.next = 10;
+            _context6.next = 10;
             break;
 
           case 7:
-            _context5.prev = 7;
-            _context5.t0 = _context5["catch"](1);
-            console.log(_context5.t0); //where to go when error?
+            _context6.prev = 7;
+            _context6.t0 = _context6["catch"](1);
+            console.log(_context6.t0); //where to go when error?
 
           case 10:
           case "end":
-            return _context5.stop();
+            return _context6.stop();
         }
       }
-    }, _callee5, null, [[1, 7]]);
+    }, _callee6, null, [[1, 7]]);
   }));
 
-  return function postEditVideo(_x9, _x10) {
-    return _ref5.apply(this, arguments);
+  return function postEditVideo(_x11, _x12) {
+    return _ref6.apply(this, arguments);
   };
 }();
 
 exports.postEditVideo = postEditVideo;
 
 var deleteVideo = /*#__PURE__*/function () {
-  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee6(req, res) {
+  var _ref7 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee7(req, res) {
     var id, _yield$Video$findById, fileUrl;
 
-    return _regeneratorRuntime["default"].wrap(function _callee6$(_context6) {
+    return _regeneratorRuntime["default"].wrap(function _callee7$(_context7) {
       while (1) {
-        switch (_context6.prev = _context6.next) {
+        switch (_context7.prev = _context7.next) {
           case 0:
             id = req.params.id;
-            _context6.prev = 1;
-            _context6.next = 4;
+            _context7.prev = 1;
+            _context7.next = 4;
             return _Video["default"].findByIdAndDelete(id);
 
           case 4:
-            _yield$Video$findById = _context6.sent;
+            _yield$Video$findById = _context7.sent;
             fileUrl = _yield$Video$findById.fileUrl;
 
             (function () {
@@ -277,25 +308,25 @@ var deleteVideo = /*#__PURE__*/function () {
             })();
 
             res.redirect(_routes["default"].home);
-            _context6.next = 14;
+            _context7.next = 14;
             break;
 
           case 10:
-            _context6.prev = 10;
-            _context6.t0 = _context6["catch"](1);
-            console.log(_context6.t0);
+            _context7.prev = 10;
+            _context7.t0 = _context7["catch"](1);
+            console.log(_context7.t0);
             res.redirect(_routes["default"].home); //TODO: add safe
 
           case 14:
           case "end":
-            return _context6.stop();
+            return _context7.stop();
         }
       }
-    }, _callee6, null, [[1, 10]]);
+    }, _callee7, null, [[1, 10]]);
   }));
 
-  return function deleteVideo(_x11, _x12) {
-    return _ref6.apply(this, arguments);
+  return function deleteVideo(_x13, _x14) {
+    return _ref7.apply(this, arguments);
   };
 }();
 
