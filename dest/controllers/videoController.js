@@ -121,11 +121,44 @@ var postUpload = /*#__PURE__*/function () {
 
 exports.postUpload = postUpload;
 
-var videoDetail = function videoDetail(req, res) {
-  return res.render("videoDetail", {
-    pageTitle: "Video Detail"
-  });
-};
+var videoDetail = /*#__PURE__*/function () {
+  var _ref3 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee3(req, res) {
+    var id, video;
+    return _regeneratorRuntime["default"].wrap(function _callee3$(_context3) {
+      while (1) {
+        switch (_context3.prev = _context3.next) {
+          case 0:
+            id = req.params.id;
+            _context3.prev = 1;
+            _context3.next = 4;
+            return _Video["default"].findById(id);
+
+          case 4:
+            video = _context3.sent;
+            res.render("videoDetail", {
+              pageTitle: "Video Detail",
+              video: video
+            });
+            _context3.next = 11;
+            break;
+
+          case 8:
+            _context3.prev = 8;
+            _context3.t0 = _context3["catch"](1);
+            res.redirect(_routes["default"].home);
+
+          case 11:
+          case "end":
+            return _context3.stop();
+        }
+      }
+    }, _callee3, null, [[1, 8]]);
+  }));
+
+  return function videoDetail(_x5, _x6) {
+    return _ref3.apply(this, arguments);
+  };
+}();
 
 exports.videoDetail = videoDetail;
 

@@ -4,7 +4,7 @@ block content
     .form-container
         form(action=routes.editProfile({fullRoute: true, id:user.id}), method="post")
             label(for="avatar") Avatar
-            input(type="file", id="avatar", name="avatar")
+            input(type="file", id="avatar", name="avatar", accept="image/*")
             input(type="text", placeholder="Name" name="name")
             input(type="email", placeholder="Email", name="email")
             input(type="submit", value="Update Profile")
