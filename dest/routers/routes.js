@@ -70,15 +70,17 @@ var routes = {
   },
   editVideo: function editVideo() {
     var _ref6 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        fullRoute = _ref6.fullRoute;
+        fullRoute = _ref6.fullRoute,
+        id = _ref6.id;
 
-    return fullRoute ? "/videos".concat(EDIT_VIDEO) : EDIT_VIDEO;
+    return fullRoute && id ? "/videos/".concat(id, "/edit") : EDIT_VIDEO;
   },
   deleteVideo: function deleteVideo() {
     var _ref7 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
-        fullRoute = _ref7.fullRoute;
+        fullRoute = _ref7.fullRoute,
+        id = _ref7.id;
 
-    return fullRoute ? "/videos".concat(DELETE_VIDEO) : DELETE_VIDEO;
+    return fullRoute && id ? "/videos".concat(DELETE_VIDEO) : DELETE_VIDEO;
   } //   },
 
 };

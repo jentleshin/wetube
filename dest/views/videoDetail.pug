@@ -9,3 +9,4 @@ block content
         h5.video__title=video.title
         span.video__views=video.views
         p.video__description=video.description
+    a.video__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video

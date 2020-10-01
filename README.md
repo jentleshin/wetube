@@ -13,3 +13,5 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] Upload
 - [ ] Video Detail
 - [x] Edit Video
+
+- [ ] Where to go when error?

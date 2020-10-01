@@ -19,7 +19,8 @@ var videoRouter = _express["default"].Router();
 
 videoRouter.get(_routes["default"].upload(), _videoController.getUpload);
 videoRouter.post(_routes["default"].upload(), _middlewares.uploadVideo, _videoController.postUpload);
-videoRouter.get(_routes["default"].editVideo(), _videoController.editVideo);
+videoRouter.get(_routes["default"].editVideo(), _videoController.getEditVideo);
+videoRouter.post(_routes["default"].editVideo(), _videoController.postEditVideo);
 videoRouter.get(_routes["default"].deleteVideo(), _videoController.deleteVideo);
 videoRouter.get(_routes["default"].videoDetail(), _videoController.videoDetail);
 var _default = videoRouter;

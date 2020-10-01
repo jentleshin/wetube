@@ -40,10 +40,10 @@ const routes = {
   upload: ({ fullRoute } = {}) => (fullRoute ? `/videos${UPLOAD}` : UPLOAD),
   videoDetail: ({ fullRoute, id } = {}) =>
     fullRoute && id ? `/videos/${id}` : VIDEO_DETAIL,
-  editVideo: ({ fullRoute } = {}) =>
-    fullRoute ? `/videos${EDIT_VIDEO}` : EDIT_VIDEO,
-  deleteVideo: ({ fullRoute } = {}) =>
-    fullRoute ? `/videos${DELETE_VIDEO}` : DELETE_VIDEO,
+  editVideo: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/videos/${id}/edit` : EDIT_VIDEO,
+  deleteVideo: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/videos${DELETE_VIDEO}` : DELETE_VIDEO,
   //   },
 };
 
