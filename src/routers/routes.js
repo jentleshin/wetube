@@ -43,7 +43,7 @@ const routes = {
   editVideo: ({ fullRoute, id } = {}) =>
     fullRoute && id ? `/videos/${id}/edit` : EDIT_VIDEO,
   deleteVideo: ({ fullRoute, id } = {}) =>
-    fullRoute && id ? `/videos${DELETE_VIDEO}` : DELETE_VIDEO,
+    fullRoute && id ? `/videos/${id}/delete` : DELETE_VIDEO,
   //   },
 };
 

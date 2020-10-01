@@ -13,6 +13,8 @@ var _regeneratorRuntime = _interopRequireDefault(require("regenerator-runtime"))
 
 var _videoRouter = _interopRequireDefault(require("../routers/videoRouter"));
 
+var _fs = require("fs");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -249,10 +251,56 @@ var postEditVideo = /*#__PURE__*/function () {
 
 exports.postEditVideo = postEditVideo;
 
-var deleteVideo = function deleteVideo(req, res) {
-  return res.render("deleteVideo", {
-    pageTitle: "Delete Video"
-  });
-};
+var deleteVideo = /*#__PURE__*/function () {
+  var _ref6 = _asyncToGenerator( /*#__PURE__*/_regeneratorRuntime["default"].mark(function _callee6(req, res) {
+    var id, _yield$Video$findById, fileUrl;
+
+    return _regeneratorRuntime["default"].wrap(function _callee6$(_context6) {
+      while (1) {
+        switch (_context6.prev = _context6.next) {
+          case 0:
+            id = req.params.id;
+            console.log(id);
+            _context6.prev = 2;
+            _context6.next = 5;
+            return _Video["default"].findByIdAndDelete(id);
+
+          case 5:
+            _yield$Video$findById = _context6.sent;
+            fileUrl = _yield$Video$findById.fileUrl;
+            console.log(fileUrl);
+
+            (function () {
+              try {
+                _fs.promises.unlink(fileUrl);
+
+                console.log("====succsessfully unlink");
+              } catch (error) {
+                console.error(error);
+              }
+            })();
+
+            res.redirect(_routes["default"].home);
+            _context6.next = 16;
+            break;
+
+          case 12:
+            _context6.prev = 12;
+            _context6.t0 = _context6["catch"](2);
+            console.log(_context6.t0);
+            res.redirect(_routes["default"].home); //TODO: add safe
+
+          case 16:
+          case "end":
+            return _context6.stop();
+        }
+      }
+    }, _callee6, null, [[2, 12]]);
+  }));
+
+  return function deleteVideo(_x11, _x12) {
+    return _ref6.apply(this, arguments);
+  };
+}();
 
 exports.deleteVideo = deleteVideo;

@@ -3,7 +3,7 @@ include mixins/videoBlock
 
 block content
     .video__player
-        video(src=`/${video.fileUrl}`)
+        video(src=`/${video.fileUrl}`, controls='true')
         //- differece between video.fileUrl and `/${video.fileUrl}`
     .video__info
         h5.video__title=video.title

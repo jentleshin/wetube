@@ -3,6 +3,9 @@ import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime"; //how?
 import videoRouter from "../routers/videoRouter";
 
+//problemetic because it import whole promise
+import { promises as fs } from "fs";
+
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}); //what does it mean
@@ -80,5 +83,28 @@ export const postEditVideo = async (req, res) => {
   }
 };
 
-export const deleteVideo = (req, res) =>
-  res.render("deleteVideo", { pageTitle: "Delete Video" });
+export const deleteVideo = async (req, res) => {
+  const {
+    params: { id },
+  } = req;
+  console.log(id);
+  try {
+    const { fileUrl } = await Video.findByIdAndDelete(id);
+    console.log(fileUrl);
+
+    (() => {
+      try {
+        fs.unlink(fileUrl);
+        console.log("====succsessfully unlink");
+      } catch (error) {
+        console.error(error);
+      }
+    })();
+
+    res.redirect(routes.home);
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+    //TODO: add safe
+  }
+};

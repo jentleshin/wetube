@@ -80,7 +80,7 @@ var routes = {
         fullRoute = _ref7.fullRoute,
         id = _ref7.id;
 
-    return fullRoute && id ? "/videos".concat(DELETE_VIDEO) : DELETE_VIDEO;
+    return fullRoute && id ? "/videos/".concat(id, "/delete") : DELETE_VIDEO;
   } //   },
 
 };
