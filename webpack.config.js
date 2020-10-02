@@ -1,10 +1,8 @@
-const path = require("path");
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
 
 const MODE = process.env.WEBPACK_ENV;
-// const ENTRY_FILE = path.resolve(__dirname, "src", "assets", "js", "main.js");
 
 const config = {
   stats: { children: false },

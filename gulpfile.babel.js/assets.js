@@ -3,7 +3,7 @@ import del from "del";
 import webpack from "webpack-stream";
 import routes from "./routes";
 
-export const clearAssets = () => del(routes.js.dest);
+export const clearAssets = () => del("static/");
 
 export const startWebpack = (cb) => {
   process.env.WEBPACK_ENV = "development";
@@ -19,16 +19,3 @@ export const startWebpack = (cb) => {
 
   cb();
 };
-
-// export const babelBrowserifyClient = () =>
-//   gulp
-//     .src(routes.js.src)
-//     .pipe(
-//       bro({
-//         transform: [
-//           babelify.configure({ presets: ["@babel/preset-env"] }),
-//           ["uglifyify", { global: true }],
-//         ],
-//       })
-//     )
-//     .pipe(gulp.dest(routes.js.dest));

@@ -4,7 +4,6 @@ import nodemon from "gulp-nodemon";
 import browserSync from "browser-sync";
 import babel from "gulp-babel";
 import routes from "./routes";
-// import gpug from "gulp-pug";
 
 export const clearServer = () => del(routes.server.destWatch);
 
