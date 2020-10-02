@@ -14,8 +14,11 @@ const routes = {
   },
   js: {
     src: "src/**/*.js",
-    watch: "src/**/*.js",
+    srcWatch: "src/**/*.js",
+
     dest: "dest/",
+    destWatch: "dest/**/*.js",
+
     initFile: "dest/init.js",
   },
 };
@@ -30,12 +33,30 @@ const babelServer = () =>
     .pipe(babel({ presets: ["@babel/preset-env"] }))
     .pipe(gulp.dest(routes.js.dest));
 
+// const startNodemon = (cb) => {
+//   let started = false;
+//   nodemon({
+//     script: routes.js.initFile,
+//     watch: routes.js.initFile,
+//   }).on("start", () => {
+//     if (!started) {
+//       cb();
+//       started = true;
+//     }
+//   });
+// };
+
 const startNodemon = (cb) => {
   let started = false;
-  nodemon({
+
+  const server = nodemon({
     script: routes.js.initFile,
-    watch: routes.js.initFile,
-  }).on("start", () => {
+    watch: routes.js.initFile, //watch for all the imports
+    stdout: false,
+  });
+
+  server.on("stdout", (stdout) => {
+    process.stdout.write(stdout);
     if (!started) {
       cb();
       started = true;
@@ -43,22 +64,23 @@ const startNodemon = (cb) => {
   });
 };
 
-// const startBrowserSync = (cb) => {
-//   browserSync.init({
-//     port: 4000,
-//     files: dest,
-//   });
-//   cb();
-// };
+const startBrowserSync = (cb) => {
+  browserSync.init({
+    // port: 4000,
+    proxy: "localhost:4000",
+    files: routes.dest,
+  });
+  cb();
+};
 
 const watch = (cb) => {
-  gulp.watch(routes.js.watch, babelServer);
+  gulp.watch(routes.js.srcWatch, babelServer);
   gulp.watch(routes.pug.watch, pug);
   cb();
 };
 
 const prepare = gulp.series([clear, pug, babelServer]);
-// const server = gulp.series([startNodemon, startBrowserSync]);
-const live = gulp.parallel([startNodemon, watch]);
+const server = gulp.series([startNodemon, startBrowserSync]);
+const live = gulp.series([server, watch]);
 
 export const dev = gulp.series([prepare, live]);
