@@ -12,12 +12,9 @@ const routes = {
 
     destMainFile: "dest/server/init.js",
   },
-  js: {
+  assets: {
     src: "src/assets/js/**/*.js",
-    dest: "dest/assets/",
-  },
-  scss: {
-    src: "src/assets/scss/**/*.scss",
+    srcMainFile: "src/assets/js/main.js",
     dest: "dest/assets/",
   },
 };
