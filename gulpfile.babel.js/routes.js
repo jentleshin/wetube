@@ -17,7 +17,7 @@ const routes = {
     destMainFile: "dest/server/init.js",
   },
   assets: {
-    // src:
+    src: "src/assets/",
     // srcFiles:
     srcMainFile: "src/assets/js/main.js",
     dest: "dest/assets/",
