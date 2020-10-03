@@ -1,18 +1,16 @@
 const routes = {
   dest: "dest/",
   pug: {
-    src: "src/server/views/**/*.pug",
-    watch: "src/server/views/**/*.pug",
+    srcFiles: "src/server/views/**/*.pug",
     dest: "dest/server/views/",
   },
   server: {
-    src: "src/server/**/*.js",
-    srcWatch: "src/server/**/*.js",
+    srcFiles: "src/server/**/*.js",
 
     dest: "dest/server/",
-    destWatch: "dest/server/**/*.js",
+    destFiles: "dest/server/**/*.js",
 
-    initFile: "dest/server/init.js",
+    destMainFile: "dest/server/init.js",
   },
   js: {
     src: "src/assets/js/**/*.js",
