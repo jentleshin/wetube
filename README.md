@@ -17,3 +17,5 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] Where to go when error?
 - [ ] show edit video / delete video only to user
 - [ ] add ownmer to video database
+- [ ] refactorize directory
+- [ ] watch assets
