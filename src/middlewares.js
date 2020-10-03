@@ -1,4 +1,4 @@
-import routes from "./routers/routes";
+import routes from "./routes";
 import multer from "multer";
 
 const multerVideo = multer({ dest: "uploads/videos/" });

@@ -1,4 +1,4 @@
-import routes from "../routers/routes";
+import routes from "../routes";
 import Video from "../models/Video";
 // eslint-disable-next-line
 import regeneratorRuntime from "regenerator-runtime"; //how?

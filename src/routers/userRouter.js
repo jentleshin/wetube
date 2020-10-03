@@ -6,7 +6,7 @@ import {
   postEditProfile,
   userDetail,
 } from "../controllers/userController";
-import routes from "./routes";
+import routes from "../routes";
 
 export const userRouter = express.Router();
 

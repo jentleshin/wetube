@@ -1,10 +1,9 @@
-import routes from "../routers/routes";
-import userRouter from "../routers/userRouter";
+import routes from "../routes";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = (req, res) => {
   const {
-    body: { name, email, password, password2 },
+    body: { password, password2 },
   } = req;
   if (password !== password2) {
     res.status(400);
@@ -19,6 +18,7 @@ export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Log in" });
 export const postLogin = (req, res) => {
   //Todo: Confirm login
+  // eslint-disable-next-line
   if (false) {
     res.status(400);
     res.render("login", { pageTitle: "Log in" });
