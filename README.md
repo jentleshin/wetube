@@ -21,9 +21,11 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] add owner to video database
 - [x] refactorize directory
 - [x] watch assets
-- [ ] browsersync on pug & assets
+- [x] browsersync on pug & assets
 
 ## Questions:
 
 - [ ] Is it okay with pug in server?
 - [ ] Do I have to add main.js on main.pug?
+- [ ] why does nodemon restarts multiple time?
+- [ ] where to put browsersync?

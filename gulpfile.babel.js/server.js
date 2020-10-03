@@ -36,7 +36,7 @@ const startNodemon = (cb) => {
 const startBrowserSync = (cb) => {
   browserSync.init({
     proxy: "localhost:4000", //with using port:4000, reload multiple times
-    files: routes.server.destFiles,
+    files: routes.dest,
   });
   cb();
 };
