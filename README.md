@@ -14,8 +14,16 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] Video Detail
 - [x] Edit Video
 
+## Todos:
+
 - [ ] Where to go when error?
 - [ ] show edit video / delete video only to user
-- [ ] add ownmer to video database
-- [ ] refactorize directory
-- [ ] watch assets
+- [ ] add owner to video database
+- [x] refactorize directory
+- [x] watch assets
+- [ ] browsersync on pug & assets
+
+## Questions:
+
+- [ ] Is it okay with pug in server?
+- [ ] Do I have to add main.js on main.pug?
