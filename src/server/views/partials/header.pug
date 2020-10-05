@@ -1,11 +1,11 @@
 header.header
-    .header__column
+    .header__icon
         a(href=routes.home)
             i.fab.fa-youtube
-    .header__column
+    .header__search
         form(action=routes.search, method="get")
-            input(type="text", placeholder="Search by term...", name="term")
-    .header__column
+            input(type="text", placeholder="Search by term...", name="term", size="80")
+    .header__user
         
         if  !user.isAuthenticated
             ul
@@ -14,11 +14,14 @@ header.header
                 li 
                     a(href=routes.login) Log in
         else
-            ul
-                li hello, #{user.name}
-                li 
-                    a(href=routes.logout) Log out
-                li 
+            h1.header__user.authenticated
+                span #{user.name}
+                span  &nbsp&nbsp···&nbsp&nbsp 
+                span
                     a(href=routes.userDetail({ fullRoute: true, id: user.id})) Profile
-                li 
+                span &nbsp&nbsp·&nbsp&nbsp
+                span
                     a(href=routes.upload({fullRoute: true})) Upload
+                span &nbsp&nbsp·&nbsp&nbsp
+                span
+                    a(href=routes.logout) Logout

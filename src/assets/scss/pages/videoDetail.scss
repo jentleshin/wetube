@@ -1,0 +1,15 @@
+.videoDetail {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  grid-gap: 30px;
+
+  &__player {
+    &__info {
+      background-color: $lineColor;
+    }
+  }
+
+  &__comments {
+    background-color: black;
+  }
+}

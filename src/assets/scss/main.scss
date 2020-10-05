@@ -1,0 +1,9 @@
+main {
+  margin-left: $marginLR;
+  margin-right: $marginLR;
+  margin-top: $heightHF;
+  padding-top: $marginTB;
+  margin-bottom: $marginTB;
+  display: grid;
+  grid-template-columns: 1fr;
+}

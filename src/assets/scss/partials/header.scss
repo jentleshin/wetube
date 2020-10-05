@@ -1,0 +1,40 @@
+.header {
+  //   height: 120px;
+  position: fixed;
+  top: 0px;
+
+  height: $heightHF;
+
+  width: 100%;
+  background-color: $bgColor;
+  display: grid;
+
+  // margin-left: ;
+  // margin-right: $marginLR;
+  grid-template-columns: $marginLR max-content 1fr max-content $marginLR;
+  grid-template-rows: $heightHF;
+  align-items: center;
+
+  border-bottom: solid 1px $lineColor;
+  z-index: 1;
+
+  &__icon {
+    grid-column: 2;
+    margin-right: 5px;
+  }
+  &__search {
+    grid-column: 3;
+    display: flex;
+    justify-content: center;
+  }
+  &__user {
+    grid-column: 4;
+    .authenticated {
+      a {
+        color: gray;
+      }
+      text-transform: uppercase;
+      margin-right: 5px;
+    }
+  }
+}

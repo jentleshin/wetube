@@ -22,6 +22,9 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] refactorize directory
 - [x] watch assets
 - [x] browsersync on pug & assets
+- [ ] scss on sites
+- [ ] videoDetail view
+- [ ] regenerator-runtime
 
 ## Questions:
 
@@ -29,3 +32,4 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] Do I have to add main.js on main.pug?
 - [ ] why does nodemon restarts multiple time?
 - [ ] where to put browsersync?
+- [ ] image(video) crop problem
