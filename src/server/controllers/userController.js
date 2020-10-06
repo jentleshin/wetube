@@ -36,7 +36,7 @@ export const postLogin = passport.authenticate("local", {
 });
 
 export const logout = (req, res) => {
-  //logout user
+  req.logout();
   res.redirect(routes.home);
 };
 
