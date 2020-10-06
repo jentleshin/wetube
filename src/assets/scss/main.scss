@@ -6,4 +6,5 @@ main {
   margin-bottom: $marginTB;
   display: grid;
   grid-template-columns: 1fr;
+  min-height: 75vh;
 }

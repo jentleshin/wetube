@@ -5,11 +5,11 @@ const multerVideo = multer({ dest: "uploads/videos/" });
 export const uploadVideo = multerVideo.single("videoFile");
 
 export const localsMiddleware = (req, res, next) => {
-  res.locals.siteName = "Wetube";
+  res.locals.siteName = "WETUBE";
   res.locals.routes = routes;
   res.locals.user = {
-    isAuthenticated: true,
-    name: "haha123",
+    isAuthenticated: false,
+    name: "smc9601",
     id: "123123",
   };
   next();

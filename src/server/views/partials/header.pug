@@ -3,18 +3,19 @@ header.header
         h1
             a(href=routes.home)
                 i.fab.fa-youtube
-                span  YOUTUBE
+                span  #{siteName}
     .header__search-bar
         form(action=routes.search, method="get")
             input(type="text", placeholder="SEARCH", name="term", size="30")
     .header__user-navigator
         
         if  !user.isAuthenticated
-            ul
-                li
+            h1.header__user-navigator.header__user-navigator_not-authenticated
+                span
                     a(href=routes.join) Join
-                li 
-                    a(href=routes.login) Log in
+                span &nbsp·&nbsp
+                span
+                    a(href=routes.login) Login
         else
             h1.header__user-navigator.header__user-navigator_authenticated
                 span #{user.name}

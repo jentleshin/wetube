@@ -22,12 +22,12 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] refactorize directory
 - [x] watch assets
 - [x] browsersync on pug & assets
-- [ ] scss on sites
+- [x] scss on sites
 - [ ] videoDetail view
-- [ ] regenerator-runtime
 
 ## Questions:
 
+- [ ] regenerator-runtime
 - [ ] Is it okay with pug in server?
 - [ ] Do I have to add main.js on main.pug?
 - [ ] why does nodemon restarts multiple time?
