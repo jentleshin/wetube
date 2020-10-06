@@ -1,9 +1,13 @@
+import passport from "passport";
 import routes from "../routes";
+import User from "../models/User";
+// eslint-disable-next-line
+import regeneratorRuntime from "regenerator-runtime";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
-export const postJoin = (req, res) => {
+export const postJoin = async (req, res, next) => {
   const {
-    body: { password, password2 },
+    body: { name, email, password, password2 },
   } = req;
   if (password !== password2) {
     res.status(400);
@@ -11,22 +15,26 @@ export const postJoin = (req, res) => {
   } else {
     //Todo: register user
     //Todo: login User
-    res.redirect(routes.home);
+    try {
+      const user = await new User({
+        name,
+        email,
+      });
+      User.register(user, password);
+      next();
+    } catch (error) {
+      console.log(error);
+      res.redirect(routes.home);
+    }
   }
 };
 export const getLogin = (req, res) =>
   res.render("login", { pageTitle: "Log in" });
-export const postLogin = (req, res) => {
-  //Todo: Confirm login
-  // eslint-disable-next-line
-  if (false) {
-    res.status(400);
-    res.render("login", { pageTitle: "Log in" });
-  } else {
-    //ToDo: Login User
-    res.redirect(routes.home);
-  }
-};
+export const postLogin = passport.authenticate("local", {
+  successRedirect: routes.home,
+  failureRedirect: routes.login,
+});
+
 export const logout = (req, res) => {
   //logout user
   res.redirect(routes.home);

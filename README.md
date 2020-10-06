@@ -24,6 +24,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] browsersync on pug & assets
 - [x] scss on sites
 - [ ] videoDetail view
+- [ ] session save (even in server restart)
 
 ## Questions:
 
