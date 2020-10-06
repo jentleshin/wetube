@@ -1,11 +1,13 @@
 header.header
     .header__icon
-        a(href=routes.home)
-            i.fab.fa-youtube
-    .header__search
+        h1
+            a(href=routes.home)
+                i.fab.fa-youtube
+                span  YOUTUBE
+    .header__search-bar
         form(action=routes.search, method="get")
-            input(type="text", placeholder="Search by term...", name="term", size="80")
-    .header__user
+            input(type="text", placeholder="SEARCH", name="term", size="30")
+    .header__user-navigator
         
         if  !user.isAuthenticated
             ul
@@ -14,14 +16,14 @@ header.header
                 li 
                     a(href=routes.login) Log in
         else
-            h1.header__user.authenticated
+            h1.header__user-navigator.header__user-navigator_authenticated
                 span #{user.name}
-                span  &nbsp&nbsp···&nbsp&nbsp 
+                span  &nbsp···&nbsp 
                 span
                     a(href=routes.userDetail({ fullRoute: true, id: user.id})) Profile
-                span &nbsp&nbsp·&nbsp&nbsp
+                span &nbsp·&nbsp
                 span
                     a(href=routes.upload({fullRoute: true})) Upload
-                span &nbsp&nbsp·&nbsp&nbsp
+                span &nbsp·&nbsp
                 span
                     a(href=routes.logout) Logout

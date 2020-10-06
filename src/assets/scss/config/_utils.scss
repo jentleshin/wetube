@@ -2,24 +2,29 @@
   box-sizing: border-box;
 }
 h1 {
+  color: $mainText;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 15px;
+  letter-spacing: 5px;
 }
 h4 {
+  color: $mainText;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 400;
-  font-size: 20px;
+  font-weight: 300;
+  font-size: 15px;
+  letter-spacing: 1px;
 
   margin-top: 5px;
   margin-bottom: 5px;
 }
 h5 {
+  color: $grayText;
   font-family: "Noto Sans KR", sans-serif;
-  font-weight: 500;
+  font-weight: 300;
   font-size: 15px;
+  letter-spacing: 1px;
   margin-bottom: 5px;
-  color: grey;
 }
 video {
   //video is responsive
@@ -30,5 +35,8 @@ video {
 }
 a {
   text-decoration: none;
-  color: black;
+  color: $mainText;
+}
+body {
+  background-color: $bgColor;
 }

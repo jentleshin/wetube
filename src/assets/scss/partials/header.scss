@@ -9,8 +9,6 @@
   background-color: $bgColor;
   display: grid;
 
-  // margin-left: ;
-  // margin-right: $marginLR;
   grid-template-columns: $marginLR max-content 1fr max-content $marginLR;
   grid-template-rows: $heightHF;
   align-items: center;
@@ -18,23 +16,39 @@
   border-bottom: solid 1px $lineColor;
   z-index: 1;
 
-  &__icon {
+  .header__icon {
     grid-column: 2;
     margin-right: 5px;
   }
-  &__search {
+  .header__search-bar {
     grid-column: 3;
     display: flex;
     justify-content: center;
-  }
-  &__user {
-    grid-column: 4;
-    .authenticated {
-      a {
-        color: gray;
+    input {
+      border-left: none;
+      border-right: none;
+      border-top: 1px solid $lineColor;
+      border-bottom: 1px solid $lineColor;
+      line-height: 20px;
+      background-color: $bgColor;
+      &::placeholder {
+        @extend h1;
+        color: $grayText;
       }
-      text-transform: uppercase;
-      margin-right: 5px;
+      &:focus {
+        outline: none;
+        border-color: $mainText;
+      }
+    }
+  }
+  .header__user-navigator {
+    grid-column: 4;
+    text-transform: uppercase;
+
+    &_authenticated {
+      a {
+        color: $grayText;
+      }
     }
   }
 }
