@@ -28,6 +28,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] route safe
 - [x] logout
 - [ ] private only to creator only
+- [ ] 3000 -> 4000 github login
 
 ## Questions:
 

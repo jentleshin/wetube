@@ -19,6 +19,8 @@ const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
 const GITHUB_LOGIN = "/auth/github";
 const GITHUB_LOGIN_CALLBACK = "/auth/github/callback";
+const FACEBOOK_LOGIN = "/auth/facebook";
+const FACEBOOK_LOGIN_CALLBACK = "/auth/facebook/callback";
 
 const routes = {
   //   global: {
@@ -30,6 +32,8 @@ const routes = {
   //   },
   ghLogin: GITHUB_LOGIN,
   ghLoginCallback: GITHUB_LOGIN_CALLBACK,
+  fbLogin: FACEBOOK_LOGIN,
+  fbLoginCallback: FACEBOOK_LOGIN_CALLBACK,
   //   user: {
   users: USERS,
   userDetail: ({ fullRoute, id } = {}) =>

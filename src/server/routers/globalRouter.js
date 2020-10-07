@@ -7,6 +7,8 @@ import {
   logout,
   getGithubLogin,
   getGithubLoginCallback,
+  getFacebookLogin,
+  getFacebookLoginCallback,
 } from "../controllers/userController";
 import { home, search } from "../controllers/videoController";
 import { publicOnly } from "../middlewares";
@@ -24,6 +26,9 @@ globalRouter.post(routes.login, postLogin);
 
 globalRouter.get(routes.ghLogin, publicOnly, getGithubLogin); //routes.js
 globalRouter.get(routes.ghLoginCallback, getGithubLoginCallback); //routes.js
+
+globalRouter.get(routes.fbLogin, publicOnly, getFacebookLogin); //routes.js
+globalRouter.get(routes.fbLoginCallback, getFacebookLoginCallback); //routes.js
 
 globalRouter.get(routes.logout, logout);
 globalRouter.get(routes.search, search);

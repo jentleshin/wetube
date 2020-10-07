@@ -16,11 +16,11 @@ export const postJoin = async (req, res, next) => {
     //Todo: register user
     //Todo: login User
     try {
-      const user = await new User({
+      const user = new User({
         name,
         email,
       });
-      User.register(user, password);
+      await User.register(user, password);
       next();
     } catch (error) {
       console.log(error);
@@ -38,6 +38,14 @@ export const postLogin = passport.authenticate("local", {
 
 export const getGithubLogin = passport.authenticate("github");
 export const getGithubLoginCallback = passport.authenticate("github", {
+  successRedirect: routes.home,
+  failureRedirect: routes.login,
+});
+
+export const getFacebookLogin = passport.authenticate("facebook", {
+  scope: "email",
+});
+export const getFacebookLoginCallback = passport.authenticate("facebook", {
   successRedirect: routes.home,
   failureRedirect: routes.login,
 });
