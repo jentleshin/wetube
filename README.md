@@ -38,3 +38,5 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] where to put browsersync?
 - [ ] image(video) crop problem
 - [ ] route protection only on get
+- [ ] remove file sync
+- [ ] get private email from github

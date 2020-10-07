@@ -7,10 +7,9 @@ const UserSchema = new mongoose.Schema({
     type: String,
     required: "name is required",
   },
-  avartarUrl: String,
+  avatarUrl: String,
   email: {
     type: mongoose.SchemaTypes.Email,
-    required: "email is required",
   },
   facebookId: Number,
   githubId: Number,

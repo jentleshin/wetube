@@ -1,10 +1,11 @@
 .social-login
-    button.social-login__github
-        span
-            i.fab.fa-github
-        span &nbsp&nbsp
-        span Continue with 
-        span.github-typeface Github
+    form(action=routes.ghLogin, method="get")
+        button.social-login__github
+            span
+                i.fab.fa-github
+            span &nbsp&nbsp
+            span Continue with 
+            span.github-typeface Github
     button.social-login__facebook
         span
             i.fab.fa-facebook

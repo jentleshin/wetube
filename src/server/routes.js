@@ -17,6 +17,8 @@ const UPLOAD = "/upload";
 const VIDEO_DETAIL = "/:id";
 const EDIT_VIDEO = "/:id/edit";
 const DELETE_VIDEO = "/:id/delete";
+const GITHUB_LOGIN = "/auth/github";
+const GITHUB_LOGIN_CALLBACK = "/auth/github/callback";
 
 const routes = {
   //   global: {
@@ -26,6 +28,8 @@ const routes = {
   logout: LOGOUT,
   search: SEARCH,
   //   },
+  ghLogin: GITHUB_LOGIN,
+  ghLoginCallback: GITHUB_LOGIN_CALLBACK,
   //   user: {
   users: USERS,
   userDetail: ({ fullRoute, id } = {}) =>
