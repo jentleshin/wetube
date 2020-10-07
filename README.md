@@ -27,6 +27,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] session save (even in server restart)
 - [ ] route safe
 - [x] logout
+- [ ] private only to creator only
 
 ## Questions:
 
@@ -36,3 +37,4 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] why does nodemon restarts multiple time?
 - [ ] where to put browsersync?
 - [ ] image(video) crop problem
+- [ ] route protection only on get

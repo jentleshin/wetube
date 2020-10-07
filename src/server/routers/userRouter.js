@@ -6,14 +6,15 @@ import {
   postEditProfile,
   userDetail,
 } from "../controllers/userController";
+import { privateOnly } from "../middlewares";
 import routes from "../routes";
 
 export const userRouter = express.Router();
 
-userRouter.get(routes.editProfile(), getEditProfile);
+userRouter.get(routes.editProfile(), privateOnly, getEditProfile);
 userRouter.post(routes.editProfile(), postEditProfile);
-userRouter.get(routes.changePassword(), getChangePassword);
+userRouter.get(routes.changePassword(), privateOnly, getChangePassword);
 userRouter.post(routes.changePassword(), postChangePassword);
-userRouter.get(routes.userDetail(), userDetail);
+userRouter.get(routes.userDetail(), privateOnly, userDetail);
 
 export default userRouter;
