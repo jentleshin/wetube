@@ -6,6 +6,7 @@ import {
   postEditProfile,
   userDetail,
 } from "../controllers/userController";
+import { localsUserVideo } from "../controllers/videoController";
 import { privateOnly } from "../middlewares";
 import routes from "../routes";
 
@@ -15,6 +16,6 @@ userRouter.get(routes.editProfile(), privateOnly, getEditProfile);
 userRouter.post(routes.editProfile(), postEditProfile);
 userRouter.get(routes.changePassword(), privateOnly, getChangePassword);
 userRouter.post(routes.changePassword(), postChangePassword);
-userRouter.get(routes.userDetail(), privateOnly, userDetail);
+userRouter.get(routes.userDetail(), privateOnly, localsUserVideo, userDetail);
 
 export default userRouter;

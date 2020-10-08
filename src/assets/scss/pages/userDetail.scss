@@ -1,0 +1,62 @@
+.user-detail {
+  @extend h1;
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  grid-template-rows: max-content max-content max-content;
+  grid-template-areas:
+    "prf com"
+    "nav nav"
+    "vid vid";
+  // align-items: center;
+  column-gap: 60px;
+  row-gap: 30px;
+  .user-profile {
+    grid-area: prf;
+
+    display: grid;
+    grid-template-columns: max-content max-content;
+    grid-template-rows: max-content max-content;
+
+    padding: 60px;
+    border: 1px solid$lineColor;
+    border-radius: 5px;
+    gap: 60px;
+
+    background-color: $lineColor;
+
+    .user-profile__img {
+      width: 120px;
+      height: 120px;
+    }
+    .user-profile__info {
+      display: grid;
+      grid-template-columns: 180px max-content;
+      grid-template-rows: repeat(2, 60px);
+      align-items: center;
+      border-bottom: 1px solid $bgColor;
+
+      & > * {
+        line-height: 60px;
+        border-top: 1px solid $bgColor;
+      }
+
+      div {
+        color: $bgColor;
+      }
+    }
+  }
+  .user-comments {
+    grid-area: com;
+    border: 1px solid $lineColor;
+  }
+  .navigator {
+    grid-area: nav;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 60px;
+  }
+  .user-videos {
+    grid-area: vid;
+  }
+}

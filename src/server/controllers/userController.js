@@ -13,8 +13,6 @@ export const postJoin = async (req, res, next) => {
     res.status(400);
     res.render("join", { pageTitle: "Join" });
   } else {
-    //Todo: register user
-    //Todo: login User
     try {
       const user = new User({
         name,
@@ -57,8 +55,9 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const userDetail = (req, res) =>
+export const userDetail = (req, res) => {
   res.render("userDetail", { pageTitle: "User Detail" });
+};
 export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 export const postEditProfile = (req, res) => {

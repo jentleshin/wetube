@@ -4,6 +4,12 @@ import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
+export const localsUserVideo = async (req, res, next) => {
+  const videos = await Video.find({}).sort({ _id: -1 });
+  res.locals.videos = videos;
+  next();
+};
+
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}).sort({ _id: -1 }); //what does it mean

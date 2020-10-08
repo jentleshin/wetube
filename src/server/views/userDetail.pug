@@ -1,5 +1,32 @@
 extends layouts/main.pug
+include mixins/videoBlock
 
 block content
-    p user detail
-    a.edit-profile__link(href=routes.editProfile({fullRoute: true, id: user.id})) Edit Profile
+    .user-detail
+        .user-profile
+            .user-profile__img 
+                img(src=user.avatarUrl)
+            .user-profile__info
+                div name
+                span=user.name
+                div email
+                span=user.email
+                    if (user.githubId)
+                        span &nbsp
+                            i.fab.fa-github
+                    if (user.facebookId)
+                        span &nbsp
+                            i.fab.fa-facebook
+            form.user-profile__edit(action=routes.editProfile({fullRoute: true, id: user.id}), method="get")
+                button.simple-input Edit Profile
+        .user-comments user comments
+        .navigator
+            h1 UPLOADS
+        .videos.user-videos
+            each video in videos
+                +videoBlock({
+                    title:video.title,
+                    views:video.views,
+                    fileUrl:video.fileUrl,
+                    id:video.id
+                })
