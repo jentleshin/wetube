@@ -4,6 +4,8 @@ mixin videoBlock(video = {})
             video(src=`/${video.fileUrl}`)
         .videoBlock__info
             h4.videoBlock__title=video.title
-            h5.videoBlock__views #{video.views} views
+            h5.videoBlock__creator=video.creatorName
+                span &nbsp·&nbsp
+                span.videoBlock__views #{video.views} views
         //-  See Detail
         

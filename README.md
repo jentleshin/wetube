@@ -17,18 +17,19 @@ Cloning Youtube with VanillaJS / NodeJS
 ## Todos:
 
 - [ ] Where to go when error?
-- [ ] show edit video / delete video only to user
-- [ ] add owner to video database
+- [x] show edit video / delete video only to user
+- [x] add creator to video database
 - [x] refactorize directory
 - [x] watch assets
 - [x] browsersync on pug & assets
 - [x] scss on sites
 - [ ] videoDetail view
 - [x] session save (even in server restart)
-- [ ] route safe
+- [ ] route safe total
 - [x] logout
-- [ ] private only to creator only
+- [x] private only to creator only
 - [ ] 3000 -> 4000 github login
+- [ ] comment
 
 ## Questions:
 
@@ -40,4 +41,5 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] image(video) crop problem
 - [ ] route protection only on get
 - [ ] remove file sync
-- [ ] get private email from github
+- [x] get private email from github -> use passport-github2
+- [ ] localsMiddleware run multiple time

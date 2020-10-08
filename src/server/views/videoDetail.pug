@@ -11,7 +11,8 @@ block content
                 h4.videoDetail__title=video.title
                 h5.videoDetail__views #{video.views} views
                 p.videoDetail__description=video.description
-                a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
+                if (isCreator)
+                    a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
         .videoDetail__comments
             if video.comments.length === 0
                 span.videoDetail__comment-number No comment yet

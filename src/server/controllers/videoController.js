@@ -5,7 +5,10 @@ import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
 export const localsUserVideo = async (req, res, next) => {
-  const videos = await Video.find({}).sort({ _id: -1 });
+  const currentUser = req.user;
+  const videos = await Video.find({
+    creator: currentUser._id,
+  }).sort({ _id: -1 });
   res.locals.videos = videos;
   next();
 };
@@ -42,13 +45,16 @@ export const postUpload = async (req, res) => {
   const {
     body: { title, description },
     file: { path },
+    user: { _id: creator, name: creatorName },
   } = req;
-
+  // const creatorName =
   try {
     const newVideo = await Video.create({
       fileUrl: path,
       title,
       description,
+      creator,
+      creatorName,
     });
     res.redirect(routes.videoDetail({ fullRoute: true, id: newVideo.id }));
   } catch (error) {
@@ -62,7 +68,11 @@ export const videoDetail = async (req, res) => {
 
   try {
     const video = await Video.findById(id);
-    res.render("videoDetail", { pageTitle: "Video Detail", video });
+    const currentUser = req.user;
+    const isCreator = currentUser
+      ? currentUser._id.equals(video.creator)
+      : false;
+    res.render("videoDetail", { pageTitle: "Video Detail", video, isCreator });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
