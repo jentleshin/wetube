@@ -4,9 +4,10 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  transition: $mainTransition;
 
   &:hover {
-    box-shadow: 0px 0px 5px $lineColor;
+    box-shadow: 0px 0px 10px $lineColor;
   }
 
   .videoBlock__thumbnail {

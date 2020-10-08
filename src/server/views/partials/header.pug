@@ -5,8 +5,8 @@ header.header
                 i.fab.fa-youtube
                 span  #{siteName}
     .header__search-bar
-        form(action=routes.search, method="get")
-            input(type="text", placeholder="SEARCH", name="term", size="30")
+        form(action=routes.search, method="get", autocomplete="off")
+            input(type="text", placeholder="SEARCH", name="term", size="30", required=true)
     .header__user-navigator
         
         if  !user

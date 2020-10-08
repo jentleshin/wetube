@@ -1,16 +1,16 @@
-.social-login
-    form(action=routes.ghLogin, method="get")
-        button.social-login__github
+.login-block__container.social
+    form.login-block__form.social__github(action=routes.ghLogin, method="get")
+        button.social__github-button
             span
                 i.fab.fa-github
             span &nbsp&nbsp
             span Continue with 
-            span.github-typeface Github
+            span.social__github-typeface Github
     
-    form(action=routes.fbLogin, method="get")
-        button.social-login__facebook
+    form.login-block__form.social__facebook(action=routes.fbLogin, method="get")
+        button.social__facebook-button
             span
                 i.fab.fa-facebook
             span &nbsp&nbsp
             span Continue with 
-            span.facebook-typeface Facebook
+            span.social__facebook-typeface Facebook

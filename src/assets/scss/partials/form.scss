@@ -1,29 +1,13 @@
-.form-container {
+.login-block {
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 180px;
 
-  form {
+  .login-block__form {
     width: 300px;
     display: flex;
     flex-direction: column;
     gap: 30px;
-
-    input {
-      height: 60px;
-
-      text-align: center;
-      border: 1px solid $lineColor;
-
-      &::placeholder {
-        @extend h1;
-        color: $grayText;
-      }
-      &:valid {
-        border-color: $mainText;
-        color: $mainText;
-      }
-    }
   }
 }

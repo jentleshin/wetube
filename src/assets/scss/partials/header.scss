@@ -27,17 +27,19 @@
     input {
       border-left: none;
       border-right: none;
-      border-top: 1px solid $lineColor;
+      text-align: center;
       border-bottom: 1px solid $lineColor;
-      line-height: 20px;
-      background-color: $bgColor;
+      height: 60px;
       &::placeholder {
         @extend h1;
         color: $grayText;
       }
       &:focus {
-        outline: none;
         border-color: $mainText;
+      }
+      &:valid {
+        border-color: $mainText;
+        color: $mainText;
       }
     }
   }
@@ -48,6 +50,10 @@
     &_authenticated {
       a {
         color: $grayText;
+        transition: $mainTransition;
+        &:hover {
+          color: $mainText;
+        }
       }
     }
   }
