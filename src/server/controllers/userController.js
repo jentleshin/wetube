@@ -36,7 +36,9 @@ export const postLogin = passport.authenticate("local", {
   failureRedirect: routes.login,
 });
 
-export const getGithubLogin = passport.authenticate("github");
+export const getGithubLogin = passport.authenticate("github", {
+  scope: ["user:email"],
+});
 export const getGithubLoginCallback = passport.authenticate("github", {
   successRedirect: routes.home,
   failureRedirect: routes.login,

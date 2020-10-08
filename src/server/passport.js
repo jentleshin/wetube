@@ -1,5 +1,5 @@
 import passport from "passport";
-import GithubStrategy from "passport-github";
+import GithubStrategy from "passport-github2";
 import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
 import routes from "./routes";
@@ -13,31 +13,26 @@ passport.use(
       clientID: process.env.GH_CLIENT_ID,
       clientSecret: process.env.GH_CLIENT_SECRET,
       callbackURL: `http://localhost:3000${routes.ghLoginCallback}`,
-      scope: "user:email",
+      scope: ["user:email"],
     },
     async (_, __, profile, cb) => {
       const {
-        _json: { id: githubId, avatar_url: avatarUrl, login: name, email },
+        emails: [{ value: email }],
+        _json: { id: githubId, avatar_url: avatarUrl, login: name },
       } = profile;
       try {
-        //erase soon//
-        const githubUser = await User.findOne({ githubId });
-        if (githubUser) {
-          return cb(null, githubUser);
-        }
-
-        const otherUser = await User.findOne({ email });
-        if (otherUser) {
-          otherUser.githubId = githubId;
-          otherUser.save();
-          return cb(null, otherUser);
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+          existingUser.githubId = githubId;
+          existingUser.save();
+          return cb(null, existingUser);
         }
 
         const newUser = await User.create({
           name,
           avatarUrl,
           githubId,
-          email: "jentleshin@gmail.com",
+          email,
         });
         return cb(null, newUser);
       } catch (error) {
@@ -68,11 +63,11 @@ passport.use(
         },
       } = profile;
       try {
-        const user = await User.findOne({ email });
-        if (user) {
-          user.facebookId = facebookId;
-          await user.save();
-          return done(null, user);
+        const existingUser = await User.findOne({ email });
+        if (existingUser) {
+          existingUser.facebookId = facebookId;
+          await existingUser.save();
+          return done(null, existingUser);
         }
         const newUser = await User.create({
           name,
