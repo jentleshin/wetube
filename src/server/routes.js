@@ -10,7 +10,7 @@ const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/:id/edit-profile";
 const CHANGE_PASSWORD = "/:id/change-password";
-
+const CURRENT_USER_DETAIL = "/my-profile";
 //Videos
 const VIDEOS = "/videos";
 const UPLOAD = "/upload";
@@ -42,6 +42,8 @@ const routes = {
     fullRoute ? `/users/${id}/edit-profile` : EDIT_PROFILE,
   changePassword: ({ fullRoute, id } = {}) =>
     fullRoute ? `/users/${id}/change-password` : CHANGE_PASSWORD,
+  currentUserDetail: ({ fullRoute } = {}) =>
+    fullRoute ? `/users${CURRENT_USER_DETAIL}` : CURRENT_USER_DETAIL,
   //   },
   //   video: {
   videos: VIDEOS,

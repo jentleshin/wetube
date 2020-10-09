@@ -9,7 +9,7 @@ header.header
             input(type="text", placeholder="SEARCH", name="term", size="30", required=true)
     .header__user-navigator
         
-        if  !user
+        if  !currentUser
             h1.header__user-navigator.header__user-navigator_not-authenticated
                 span
                     a(href=routes.join) Join
@@ -18,10 +18,10 @@ header.header
                     a(href=routes.login) Login
         else
             h1.header__user-navigator.header__user-navigator_authenticated
-                span #{user.name}
+                span #{currentUser.name}
                 span  &nbsp···&nbsp 
                 span
-                    a(href=routes.userDetail({ fullRoute: true, id: user.id})) Profile
+                    a(href=routes.currentUserDetail({fullRoute: true})) Profile
                 span &nbsp·&nbsp
                 span
                     a(href=routes.upload({fullRoute: true})) Upload

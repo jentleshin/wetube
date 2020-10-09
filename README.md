@@ -30,6 +30,8 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] private only to creator only
 - [ ] 3000 -> 4000 github login
 - [ ] comment
+- [ ] video Detail / creator Only overlap - refactorizing needed
+- [ ] videoBlock not responsive
 
 ## Questions:
 
@@ -43,3 +45,4 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] remove file sync
 - [x] get private email from github -> use passport-github2
 - [ ] localsMiddleware run multiple time
+- [ ] why no formatonsave :(

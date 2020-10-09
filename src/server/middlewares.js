@@ -8,7 +8,7 @@ export const uploadVideo = multerVideo.single("videoFile");
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WETUBE";
   res.locals.routes = routes;
-  res.locals.user = req.user;
+  res.locals.currentUser = req.user;
   next();
 };
 

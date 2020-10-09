@@ -55,14 +55,41 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const userDetail = (req, res) => {
-  res.render("userDetail", { pageTitle: "User Detail" });
+export const userDetail = async (req, res) => {
+  //if me, go to currentUserDetail
+  //else, find get id and find user to render
+  const targetUserId = req.params.id;
+  const currentUser = req.user;
+  try {
+    if (currentUser && currentUser._id.equals(targetUserId)) {
+      res.redirect(routes.currentUserDetail({ fullRoute: true }));
+    } else {
+      const targetUser = await User.findById(targetUserId);
+      res.render("userDetail", { pageTitle: "User Detail", user: targetUser });
+    }
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
+export const currentUserDetail = (req, res) => {
+  try {
+    const currentUser = req.user;
+    if (!currentUser) {
+      throw "currentUser is not defined.";
+    }
+
+    res.render("userDetail", { pageTitle: "User Detail", user: currentUser });
+  } catch (error) {
+    console.log(error);
+    // res.redirect(routes.home);
+  }
 };
 export const getEditProfile = (req, res) =>
   res.render("editProfile", { pageTitle: "Edit Profile" });
 export const postEditProfile = (req, res) => {
   //change profile
-  res.redirect(routes.userDetail({ fullRoute: true, id: res.locals.user.id }));
+  res.redirect(routes.me({ fullRoute: true }));
 };
 export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });

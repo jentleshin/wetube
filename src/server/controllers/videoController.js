@@ -4,13 +4,36 @@ import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
+export const localsCurrentUserVideo = async (req, res, next) => {
+  try {
+    const currentUser = req.user;
+    if (!currentUser) {
+      throw "currentUser is not defined.";
+    }
+
+    const videos = await Video.find({
+      creator: currentUser._id,
+    }).sort({ _id: -1 });
+    res.locals.videos = videos;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
+};
+
 export const localsUserVideo = async (req, res, next) => {
-  const currentUser = req.user;
-  const videos = await Video.find({
-    creator: currentUser._id,
-  }).sort({ _id: -1 });
-  res.locals.videos = videos;
-  next();
+  try {
+    const targetUserId = req.params.id;
+    const videos = await Video.find({
+      creator: targetUserId,
+    }).sort({ _id: -1 });
+    res.locals.videos = videos;
+    next();
+  } catch (error) {
+    console.log(error);
+    res.redirect(routes.home);
+  }
 };
 
 export const home = async (req, res) => {
