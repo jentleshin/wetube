@@ -17,8 +17,9 @@ block content
                     if (user.facebookId)
                         span &nbsp
                             i.fab.fa-facebook
-            form.user-profile__edit(action=routes.editProfile({fullRoute: true, id: user.id}), method="get")
-                button.simple-input Edit Profile
+            if (user._id === currentUser._id)
+                form.user-profile__edit(action=routes.editProfile({fullRoute: true}), method="get")
+                    button.simple-input Edit Profile
         .user-comments user comments
         .navigator
             h1 UPLOADS

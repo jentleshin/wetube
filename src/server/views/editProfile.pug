@@ -1,11 +1,11 @@
 extends layouts/main.pug
 
 block content
-    .form-container
-        form(action=routes.editProfile({fullRoute: true, id:user.id}), method="post")
+    .login-block
+        form.login-block__form(action=routes.editProfile({fullRoute: true}), method="post")
             label(for="avatar") Avatar
-            input(type="file", id="avatar", name="avatar", accept="image/*")
-            input(type="text", placeholder="Name" name="name")
-            input(type="email", placeholder="Email", name="email")
-            input(type="submit", value="Update Profile")
+            input.simple-input(type="file", id="avatar", name="avatar", accept="image/*")
+            input.simple-input(type="text", placeholder=currentUser.name name="name")
+            input.simple-input(type="email", placeholder=currentUser.email, name="email")
+            input.simple-input(type="submit", value="Update Profile")
         a.form-container__link(href=routes.changePassword({fullRoute: true, id: user.id})) Change Password

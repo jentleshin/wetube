@@ -32,6 +32,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] comment
 - [ ] video Detail / creator Only overlap - refactorizing needed
 - [ ] videoBlock not responsive
+- [ ] editProfile css
 
 ## Questions:
 
@@ -46,3 +47,4 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] get private email from github -> use passport-github2
 - [ ] localsMiddleware run multiple time
 - [ ] why no formatonsave :(
+- [ ] user._id === currentUser._id in user detail? not controller?

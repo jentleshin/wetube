@@ -89,9 +89,27 @@ export const getEditProfile = (req, res) => {
   const currentUser = req.user;
   res.render("editProfile", { pageTitle: "Edit Profile", user: currentUser });
 };
-export const postEditProfile = (req, res) => {
+export const postEditProfile = async (req, res) => {
   //change profile
-  res.redirect(routes.me({ fullRoute: true }));
+  try {
+    const {
+      body: { avatar: avatarUrl, name, email },
+    } = req;
+    if (!avatarUrl && !name && !email) {
+      res.redirect(routes.editProfile({ fullRoute: true }));
+    } else {
+      const currentUser = req.user;
+      await User.findByIdAndUpdate(currentUser._id, {
+        ...(avatarUrl ? { avatarUrl } : {}),
+        ...(name ? { name } : {}),
+        ...(email ? { email } : {}),
+      });
+    }
+
+    res.redirect(routes.currentUserDetail({ fullRoute: true }));
+  } catch (error) {
+    res.redirect(routes.editProfile({ fullRoute: true }));
+  }
 };
 export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });

@@ -3,6 +3,7 @@
 
   text-align: center;
   border: 1px solid $lineColor;
+  transition: $mainTransition;
 
   &::placeholder {
     @extend h1;
