@@ -46,15 +46,5 @@
   .header__user-navigator {
     grid-column: 4;
     text-transform: uppercase;
-
-    &_authenticated {
-      a {
-        color: $grayText;
-        transition: $mainTransition;
-        &:hover {
-          color: $mainText;
-        }
-      }
-    }
   }
 }

@@ -5,11 +5,18 @@
   display: flex;
   flex-direction: column;
   transition: $mainTransition;
+  position: relative; //.videoBlock__cover
 
   &:hover {
     box-shadow: 0px 0px 10px $lineColor;
   }
 
+  .videoBlock__cover-link {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+  }
   .videoBlock__thumbnail {
     padding-bottom: 56.25%;
     position: relative;
@@ -22,6 +29,12 @@
   .videoBlock__info {
     display: flex;
     flex-direction: column;
+
+    z-index: 2;
+    pointer-events: none;
+    .videoBlock__creator-link {
+      pointer-events: auto;
+    }
 
     padding: 10px;
     padding-top: 8px;

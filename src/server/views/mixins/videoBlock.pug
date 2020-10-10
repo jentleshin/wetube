@@ -1,10 +1,13 @@
 mixin videoBlock(video = {})
-    a(href=routes.videoDetail({fullRoute: true, id: video.id})).videoBlock
+    .videoBlock
+        a.videoBlock__cover-link(href=routes.videoDetail({fullRoute: true, id: video.id}))
         .videoBlock__thumbnail
             video(src=`/${video.fileUrl}`)
         .videoBlock__info
             h4.videoBlock__title=video.title
-            h5.videoBlock__creator=video.creatorName
+            h5.videoBlock__creator
+                span
+                    a.videoBlock__creator-link(href=routes.userDetail({fullRoute: true, id: video.creator}))=video.creatorName
                 span &nbsp·&nbsp
                 span.videoBlock__views #{video.views} views
         //-  See Detail

@@ -82,11 +82,13 @@ export const currentUserDetail = (req, res) => {
     res.render("userDetail", { pageTitle: "User Detail", user: currentUser });
   } catch (error) {
     console.log(error);
-    // res.redirect(routes.home);
+    res.redirect(routes.home);
   }
 };
-export const getEditProfile = (req, res) =>
-  res.render("editProfile", { pageTitle: "Edit Profile" });
+export const getEditProfile = (req, res) => {
+  const currentUser = req.user;
+  res.render("editProfile", { pageTitle: "Edit Profile", user: currentUser });
+};
 export const postEditProfile = (req, res) => {
   //change profile
   res.redirect(routes.me({ fullRoute: true }));
