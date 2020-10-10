@@ -33,6 +33,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] video Detail / creator Only overlap - refactorizing needed
 - [ ] videoBlock not responsive
 - [ ] editProfile css
+- [ ] image MULTER
 
 ## Questions:
 
