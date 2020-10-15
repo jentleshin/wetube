@@ -5,7 +5,7 @@ block content
     .user-detail
         .user-profile
             .user-profile__img 
-                img(src=user.avatarUrl)
+                img(src=`/${user.avatarUrl}`)
             .user-profile__info
                 div name
                 span=user.name
@@ -17,7 +17,7 @@ block content
                     if (user.facebookId)
                         span &nbsp
                             i.fab.fa-facebook
-            if (user._id === currentUser._id)
+            if (user === currentUser)
                 form.user-profile__edit(action=routes.editProfile({fullRoute: true}), method="get")
                     button.simple-input Edit Profile
         .user-comments user comments

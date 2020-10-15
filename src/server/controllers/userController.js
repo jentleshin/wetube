@@ -3,6 +3,7 @@ import routes from "../routes";
 import User from "../models/User";
 // eslint-disable-next-line
 import regeneratorRuntime from "regenerator-runtime";
+import { promises as fs } from "fs";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res, next) => {
@@ -93,12 +94,17 @@ export const postEditProfile = async (req, res) => {
   //change profile
   try {
     const {
-      body: { avatar: avatarUrl, name, email },
+      body: { name, email },
+      file: { path: avatarUrl },
     } = req;
     if (!avatarUrl && !name && !email) {
       res.redirect(routes.editProfile({ fullRoute: true }));
     } else {
       const currentUser = req.user;
+      if (avatarUrl && currentUser.avatarUrl) {
+        fs.unlink(currentUser.avatarUrl);
+      }
+
       await User.findByIdAndUpdate(currentUser._id, {
         ...(avatarUrl ? { avatarUrl } : {}),
         ...(name ? { name } : {}),
@@ -108,6 +114,7 @@ export const postEditProfile = async (req, res) => {
 
     res.redirect(routes.currentUserDetail({ fullRoute: true }));
   } catch (error) {
+    console.log(error);
     res.redirect(routes.editProfile({ fullRoute: true }));
   }
 };

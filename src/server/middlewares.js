@@ -5,6 +5,9 @@ import Video from "./models/Video";
 const multerVideo = multer({ dest: "uploads/videos/" });
 export const uploadVideo = multerVideo.single("videoFile");
 
+const multerAvatar = multer({ dest: "uploads/avatars/" });
+export const uploadAvatar = multerAvatar.single("avatar");
+
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WETUBE";
   res.locals.routes = routes;

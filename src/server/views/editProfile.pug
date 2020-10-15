@@ -2,7 +2,7 @@ extends layouts/main.pug
 
 block content
     .login-block
-        form.login-block__form(action=routes.editProfile({fullRoute: true}), method="post")
+        form.login-block__form(action=routes.editProfile({fullRoute: true}), method="post", enctype="multipart/form-data")
             label(for="avatar") Avatar
             input.simple-input(type="file", id="avatar", name="avatar", accept="image/*")
             input.simple-input(type="text", placeholder=currentUser.name name="name")
