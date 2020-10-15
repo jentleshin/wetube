@@ -120,7 +120,34 @@ export const postEditProfile = async (req, res) => {
 };
 export const getChangePassword = (req, res) =>
   res.render("changePassword", { pageTitle: "Change Password" });
-export const postChangePassword = (req, res) => {
+export const postChangePassword = async (req, res) => {
+  const {
+    body: { oldPassword, newPassword1, newPassword2 },
+  } = req;
+  const currentUser = req.user;
+
+  try {
+    if (newPassword1 !== newPassword2) {
+      res.status(400);
+      res.redirect(
+        routes.getChangePassword({ fullRoute: true, id: currentUser.id })
+      );
+    }
+    await currentUser
+      .changePassword(oldPassword, newPassword2)
+      .catch((error) => {
+        res.status(400);
+        console.log(error);
+        res.redirect(
+          routes.changePassword({ fullRoute: true, id: currentUser.id })
+        );
+      });
+  } catch (error) {
+    console.log(error);
+    res.redirect(
+      routes.changePassword({ fullRoute: true, id: currentUser.id })
+    );
+  }
   //change password
-  res.redirect(routes.editProfile({ fullRoute: true, id: res.locals.user.id }));
+  res.redirect(routes.currentUserDetail({ fullRoute: true }));
 };
