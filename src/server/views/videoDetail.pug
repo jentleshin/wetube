@@ -1,11 +1,13 @@
 extends layouts/main.pug
-include mixins/videoBlock
+include mixins/videoPlayer
+
 
 block content
     .videoDetail
         .videoDetail__wrapper
-            .videoDetail__player
-                video(src=`/${video.fileUrl}`, controls='true')
+            +videoPlayer(video)
+            //- .videoDetail__player
+            //-     video(src=`/${video.fileUrl}`, controls='true')
                 //- differece between video.fileUrl and `/${video.fileUrl}`
             .videoDetail__info
                 h4.videoDetail__title=video.title
