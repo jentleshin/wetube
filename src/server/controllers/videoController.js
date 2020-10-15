@@ -42,7 +42,7 @@ export const home = async (req, res) => {
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
-    res.render("home", { pageTitle: "Home", videos: [] });
+    res.redirect(routes.home);
   }
 };
 
@@ -69,8 +69,9 @@ export const postUpload = async (req, res) => {
     body: { title, description },
     file: { path },
     user: { _id: creator, name: creatorName },
+    user: currentUser,
   } = req;
-  // const creatorName =
+
   try {
     const newVideo = await Video.create({
       fileUrl: path,
@@ -79,6 +80,9 @@ export const postUpload = async (req, res) => {
       creator,
       creatorName,
     });
+    await currentUser.videos.push(newVideo.id);
+    await currentUser.save();
+
     res.redirect(routes.videoDetail({ fullRoute: true, id: newVideo.id }));
   } catch (error) {
     console.log(error);
@@ -131,19 +135,18 @@ export const postEditVideo = async (req, res) => {
 export const deleteVideo = async (req, res) => {
   const {
     params: { id },
+    user: currentUser,
   } = req;
 
   try {
     const { fileUrl } = await Video.findByIdAndDelete(id);
+    const videoIndex = currentUser.videos.findIndex(
+      (videoId) => videoId === id
+    );
+    await currentUser.videos.splice(videoIndex, 1);
+    await currentUser.save();
 
-    (() => {
-      try {
-        fs.unlink(fileUrl);
-      } catch (error) {
-        console.error(error);
-      }
-    })();
-
+    fs.unlink(fileUrl);
     res.redirect(routes.home);
   } catch (error) {
     console.log(error);

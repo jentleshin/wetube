@@ -14,28 +14,19 @@ const UserSchema = new mongoose.Schema({
   facebookId: Number,
   githubId: Number,
 
-  //   password: {
-  //     type: String,
-  //     required: "password is required",
-  //   },
+  videos: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Video",
+    },
+  ],
 
-  //   createdAt: {
-  //     type: Date,
-  //     default: Date.now,
-  //   },
-
-  //   videoList: [
-  //     {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Video",
-  //     },
-  //   ],
-  //   commentList: [
-  //     {
-  //       type: mongoose.Schema.Types.ObjectId,
-  //       ref: "Comment",
-  //     },
-  //   ],
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Comment",
+    },
+  ],
 });
 
 UserSchema.plugin(passportLocalMongoose, { usernameField: "email" });
