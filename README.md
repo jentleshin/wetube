@@ -4,7 +4,7 @@ Cloning Youtube with VanillaJS / NodeJS
 
 ## Pages:
 
-- [ ] Home
+- [x] Home
 - [x] Join
 - [x] Login
 - [ ] Search
@@ -23,20 +23,22 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] watch assets
 - [x] browsersync on pug & assets
 - [x] scss on sites
-- [ ] videoDetail view
 - [x] session save (even in server restart)
-- [ ] route safe total
 - [x] logout
 - [x] private only to creator only
+- [x] image MULTER
 - [ ] 3000 -> 4000 github login
+- [ ] route safe total
 - [ ] comment
 - [ ] video Detail / creator Only overlap - refactorizing needed
-- [ ] videoBlock not responsive
+- [ ] videoDetail view
 - [ ] editProfile css
-- [ ] image MULTER
+- [ ] videoBlock not responsive
 
 ## Questions:
 
+- [x] get private email from github -> use passport-github2
+- [x] why no formatonsave :(
 - [ ] regenerator-runtime
 - [ ] Is it okay with pug in server?
 - [ ] Do I have to add main.js on main.pug?
@@ -45,7 +47,6 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] image(video) crop problem
 - [ ] route protection only on get
 - [ ] remove file sync
-- [x] get private email from github -> use passport-github2
 - [ ] localsMiddleware run multiple time
-- [ ] why no formatonsave :(
-- [ ] user._id === currentUser._id in user detail? not controller?
+- [ ] user.\_id === currentUser.\_id in user detail? not controller?
+- [ ] how to manage token :( Backbutton no route safe for a while

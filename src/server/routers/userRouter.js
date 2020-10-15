@@ -7,10 +7,6 @@ import {
   userDetail,
   currentUserDetail,
 } from "../controllers/userController";
-import {
-  localsCurrentUserVideo,
-  localsUserVideo,
-} from "../controllers/videoController";
 import { privateOnly, uploadAvatar } from "../middlewares";
 import routes from "../routes";
 
@@ -20,13 +16,7 @@ userRouter.get(routes.editProfile(), privateOnly, getEditProfile);
 userRouter.post(routes.editProfile(), uploadAvatar, postEditProfile);
 userRouter.get(routes.changePassword(), privateOnly, getChangePassword);
 userRouter.post(routes.changePassword(), postChangePassword);
-
-userRouter.get(
-  routes.currentUserDetail(),
-  privateOnly,
-  localsCurrentUserVideo,
-  currentUserDetail
-);
-userRouter.get(routes.userDetail(), localsUserVideo, userDetail);
+userRouter.get(routes.currentUserDetail(), privateOnly, currentUserDetail);
+userRouter.get(routes.userDetail(), userDetail);
 
 export default userRouter;

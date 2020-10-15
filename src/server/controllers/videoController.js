@@ -25,6 +25,7 @@ export const localsCurrentUserVideo = async (req, res, next) => {
 export const localsUserVideo = async (req, res, next) => {
   try {
     const targetUserId = req.params.id;
+    console.log(req.params);
     const videos = await Video.find({
       creator: targetUserId,
     }).sort({ _id: -1 });

@@ -9,7 +9,7 @@ const SEARCH = "/search";
 const USERS = "/users";
 const USER_DETAIL = "/:id";
 const EDIT_PROFILE = "/edit-profile";
-const CHANGE_PASSWORD = "/:id/change-password";
+const CHANGE_PASSWORD = "/change-password";
 const CURRENT_USER_DETAIL = "/my-profile";
 //Videos
 const VIDEOS = "/videos";
@@ -40,8 +40,8 @@ const routes = {
     fullRoute && id ? `/users/${id}` : USER_DETAIL,
   editProfile: ({ fullRoute } = {}) =>
     fullRoute ? `/users${EDIT_PROFILE}` : EDIT_PROFILE,
-  changePassword: ({ fullRoute, id } = {}) =>
-    fullRoute ? `/users/${id}/change-password` : CHANGE_PASSWORD,
+  changePassword: ({ fullRoute } = {}) =>
+    fullRoute ? `/users/${CHANGE_PASSWORD}` : CHANGE_PASSWORD,
   currentUserDetail: ({ fullRoute } = {}) =>
     fullRoute ? `/users${CURRENT_USER_DETAIL}` : CURRENT_USER_DETAIL,
   //   },

@@ -18,11 +18,12 @@ block content
                         span &nbsp
                             i.fab.fa-facebook
             if (user === currentUser)
-                form.user-profile__edit(action=routes.editProfile({fullRoute: true}), method="get")
-                    button.simple-input Edit Profile
+                a.user-profile__edit-profile(href=routes.editProfile({fullRoute: true})) Edit Profile
+                a.user-profile__change-password(href=routes.changePassword({fullRoute: true})) Change Password
+                
         .user-comments user comments
         .navigator
             h1 UPLOADS
         .videos.user-videos
-            each video in videos
+            each video in user.videos
                 +videoBlock(video)

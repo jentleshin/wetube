@@ -65,22 +65,37 @@ export const userDetail = async (req, res) => {
     if (currentUser && currentUser._id.equals(targetUserId)) {
       res.redirect(routes.currentUserDetail({ fullRoute: true }));
     } else {
-      const targetUser = await User.findById(targetUserId);
-      res.render("userDetail", { pageTitle: "User Detail", user: targetUser });
+      const targetUserPopulated = await User.findById(targetUserId).populate({
+        path: "videos",
+        options: { sort: { _id: -1 } },
+      });
+      res.render("userDetail", {
+        pageTitle: "User Detail",
+        user: targetUserPopulated,
+      });
     }
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
   }
 };
-export const currentUserDetail = (req, res) => {
+export const currentUserDetail = async (req, res) => {
   try {
     const currentUser = req.user;
     if (!currentUser) {
       throw "currentUser is not defined.";
     }
+    const currentUserPopulated = await currentUser
+      .populate({
+        path: "videos",
+        options: { sort: { _id: -1 } },
+      })
+      .execPopulate();
 
-    res.render("userDetail", { pageTitle: "User Detail", user: currentUser });
+    res.render("userDetail", {
+      pageTitle: "User Detail",
+      user: currentUserPopulated,
+    });
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);
@@ -129,24 +144,18 @@ export const postChangePassword = async (req, res) => {
   try {
     if (newPassword1 !== newPassword2) {
       res.status(400);
-      res.redirect(
-        routes.getChangePassword({ fullRoute: true, id: currentUser.id })
-      );
+      res.redirect(routes.getChangePassword({ fullRoute: true }));
     }
     await currentUser
       .changePassword(oldPassword, newPassword2)
       .catch((error) => {
         res.status(400);
         console.log(error);
-        res.redirect(
-          routes.changePassword({ fullRoute: true, id: currentUser.id })
-        );
+        res.redirect(routes.changePassword({ fullRoute: true }));
       });
   } catch (error) {
     console.log(error);
-    res.redirect(
-      routes.changePassword({ fullRoute: true, id: currentUser.id })
-    );
+    res.redirect(routes.changePassword({ fullRoute: true }));
   }
   //change password
   res.redirect(routes.currentUserDetail({ fullRoute: true }));
