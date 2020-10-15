@@ -1,6 +1,6 @@
 mixin videoBlock(video = {})
     .videoBlock
-        a.videoBlock__cover-link(href=routes.videoDetail({fullRoute: true, id: video.id}))
+        a.videoBlock__cover-link(href=`/${video.fileUrl}`)
         .videoBlock__thumbnail
             video(src=`/${video.fileUrl}`)
         .videoBlock__info
