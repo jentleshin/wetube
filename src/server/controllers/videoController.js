@@ -4,39 +4,6 @@ import Video from "../models/Video";
 import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
-export const localsCurrentUserVideo = async (req, res, next) => {
-  try {
-    const currentUser = req.user;
-    if (!currentUser) {
-      throw "currentUser is not defined.";
-    }
-
-    const videos = await Video.find({
-      creator: currentUser._id,
-    }).sort({ _id: -1 });
-    res.locals.videos = videos;
-    next();
-  } catch (error) {
-    console.log(error);
-    res.redirect(routes.home);
-  }
-};
-
-export const localsUserVideo = async (req, res, next) => {
-  try {
-    const targetUserId = req.params.id;
-    console.log(req.params);
-    const videos = await Video.find({
-      creator: targetUserId,
-    }).sort({ _id: -1 });
-    res.locals.videos = videos;
-    next();
-  } catch (error) {
-    console.log(error);
-    res.redirect(routes.home);
-  }
-};
-
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}).sort({ _id: -1 }); //what does it mean
@@ -54,7 +21,7 @@ export const search = async (req, res) => {
   try {
     const videos = await Video.find({
       title: { $regex: searchingBy, $options: "i" },
-    });
+    }).sort({ _id: -1 });
     res.render("search", { pageTitle: "Search", searchingBy, videos });
   } catch (error) {
     console.log(error);
@@ -155,3 +122,35 @@ export const deleteVideo = async (req, res) => {
     //TODO: add safe
   }
 };
+
+// export const localsCurrentUserVideo = async (req, res, next) => {
+//   try {
+//     const currentUser = req.user;
+//     if (!currentUser) {
+//       throw "currentUser is not defined.";
+//     }
+
+//     const videos = await Video.find({
+//       creator: currentUser._id,
+//     }).sort({ _id: -1 });
+//     res.locals.videos = videos;
+//     next();
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect(routes.home);
+//   }
+// };
+
+// export const localsUserVideo = async (req, res, next) => {
+//   try {
+//     const targetUserId = req.params.id;
+//     const videos = await Video.find({
+//       creator: targetUserId,
+//     }).sort({ _id: -1 });
+//     res.locals.videos = videos;
+//     next();
+//   } catch (error) {
+//     console.log(error);
+//     res.redirect(routes.home);
+//   }
+// };

@@ -1,3 +1,10 @@
+.videos {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: min-content;
+  gap: 30px;
+}
+
 .videoBlock {
   border: solid 1px $lineColor;
   border-radius: 5px;
@@ -32,7 +39,7 @@
 
     z-index: 2;
     pointer-events: none;
-    .videoBlock__creator-link {
+    .videoBlock__creator {
       pointer-events: auto;
     }
 
