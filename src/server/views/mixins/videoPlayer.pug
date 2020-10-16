@@ -1,15 +1,18 @@
 mixin videoPlayer(video = {})
-    .videoPlayer
+    .videoPlayer#jsVideoPlayer
         .videoPlayer__controls
-            button.videoPlayer__play
+            button.videoPlayer__play#jsPlayBtn
                 span.material-icons play_arrow
             .videoPlayer__time
-                h4 00:00
+                h4 
+                    span#jsCurrentTime
+                    span  / 
+                    span#jsTotalTime
             .videoPlayer__timeLine
                 input(type="range", min="1", max="100")
-            button.videoPlayer__volume
+            button.videoPlayer__volume#jsVolumeBtn
                 span.material-icons volume_up
-            button.videoPlayer__full-screen
+            button.videoPlayer__full-screen#jsFullScreenBtn
                 span.material-icons fullscreen
-        .videoPlayer__video
+        .videoPlayer__video#jsVideoContainer
             video(src=`/${video.fileUrl}`)
