@@ -6,16 +6,18 @@
     height: 100%;
 
     display: grid;
-    grid-template-columns: min-content 1fr min-content min-content;
+    grid-template-columns: min-content max-content 1fr min-content min-content;
     grid-template-rows: 50px;
 
     align-content: end;
+    align-items: center;
+    justify-items: center;
     z-index: 1;
 
     background-image: linear-gradient(
       to top,
-      rgb(45, 54, 52, 100) 5%,
-      rgb(45, 54, 52, 0)
+      $bgColorAlpha1 5%,
+      $bgColorAlpha0
     );
 
     opacity: 0;
@@ -23,6 +25,7 @@
     &:hover {
       opacity: 1;
     }
+
     span {
       height: 50px;
       width: 50px;
@@ -32,6 +35,10 @@
       color: $mainText;
     }
 
+    .videoPlayer__time {
+      padding-left: 15px;
+      //   padding-right: 15px;
+    }
     .videoPlayer__timeLine {
       width: 100%;
       padding-left: 15px;
