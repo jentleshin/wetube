@@ -38,9 +38,22 @@
       padding-right: 15px;
       display: flex;
       align-items: center;
-      input {
+
+      input[type="range"] {
         appearance: none;
         width: 100%;
+        &::track {
+          background: $lineColor;
+          height: 3px;
+          border-radius: 3px;
+        }
+        &::thumb {
+          background: $mainText;
+          width: 9px;
+          height: 9px;
+          margin-top: -3px;
+          border-radius: 9px;
+        }
       }
     }
   }

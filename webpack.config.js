@@ -1,7 +1,7 @@
 const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require("autoprefixer");
-
+const inputStyle = require("postcss-input-style");
 const MODE = process.env.WEBPACK_ENV;
 
 const config = {
@@ -30,6 +30,7 @@ const config = {
             options: {
               postcssOptions: {
                 plugins: [
+                  inputStyle,
                   autoprefixer({ overrideBrowserslist: "cover 99.5%" }),
                 ],
               },
