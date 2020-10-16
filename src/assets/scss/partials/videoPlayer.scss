@@ -1,0 +1,55 @@
+.videoPlayer {
+  position: relative;
+  .videoPlayer__controls {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    display: grid;
+    grid-template-columns: min-content 1fr min-content min-content;
+    grid-template-rows: 50px;
+
+    align-content: end;
+    z-index: 1;
+
+    background-image: linear-gradient(
+      to top,
+      rgb(45, 54, 52, 100) 5%,
+      rgb(45, 54, 52, 0)
+    );
+
+    opacity: 0;
+    transition: $mainTransition;
+    &:hover {
+      opacity: 1;
+    }
+    span {
+      height: 50px;
+      width: 50px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $mainText;
+    }
+
+    .videoPlayer__timeLine {
+      width: 100%;
+      padding-left: 15px;
+      padding-right: 15px;
+      display: flex;
+      align-items: center;
+      input {
+        appearance: none;
+        width: 100%;
+      }
+    }
+  }
+  .videoPlayer__video {
+    padding-bottom: 56.25%;
+    position: relative;
+    overflow: hidden;
+    video {
+      position: absolute;
+    }
+  }
+}

@@ -1,13 +1,13 @@
 mixin videoPlayer(video = {})
     .videoPlayer
+        .videoPlayer__controls
+            .videoPlayer__play
+                span.material-icons play_arrow
+            .videoPlayer__timeLine
+                input(type="range", min="1", max="100")
+            .videoPlayer__volume
+                span.material-icons volume_up
+            .videoPlayer__full-screen
+                span.material-icons fullscreen
         .videoPlayer__video
             video(src=`/${video.fileUrl}`)
-        .videoPlayer__controls
-            .videoPlayer__buttons
-                button.videoPlayer__play
-                    span.material-icons play_arrow
-                button.videoPlayer__volume
-                    span.material-icons volume_up
-                button.videoPlayer__full-screen
-                    span.material-icons fullscreen
-            .videoPlayer__timeLine
