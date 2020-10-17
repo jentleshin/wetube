@@ -12,7 +12,7 @@ export const timeToString = (data, timeFormat) => {
   }
 };
 
-export const timeFormat = (data) => {
+export const setTimeFormat = (data) => {
   const time = Math.floor(data);
   return time - (time % 3600) ? true : false;
 };
