@@ -34,6 +34,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] videoDetail view
 - [ ] editProfile css
 - [ ] videoBlock not responsive
+- [ ] refactorizing videoPlayer.jss
 
 ## Questions:
 

@@ -9,7 +9,7 @@ mixin videoPlayer(video = {})
                     span  / 
                     span#jsTotalTime
             .videoPlayer__timeLine
-                input(type="range", min="1", max="100")
+                input#jsTimeLine(type="range", min="0", max="100", value="0")
             button.videoPlayer__volume#jsVolumeBtn
                 span.material-icons volume_up
             button.videoPlayer__full-screen#jsFullScreenBtn
