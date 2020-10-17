@@ -3,11 +3,10 @@ mixin videoPlayer(video = {})
         .videoPlayer__controls
             button.videoPlayer__play#jsPlayBtn
                 span.material-icons play_arrow
-            .videoPlayer__time
-                h4 
-                    span#jsCurrentTime
-                    span  / 
-                    span#jsTotalTime
+            .videoPlayer__time  
+                span#jsCurrentTime
+                span  / 
+                span#jsTotalTime
             .videoPlayer__timeLine
                 input#jsTimeLine(type="range", min="0", max="100", value="0")
             button.videoPlayer__volume#jsVolumeBtn
