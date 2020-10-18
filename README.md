@@ -29,25 +29,30 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] image MULTER
 - [ ] 3000 -> 4000 github login
 - [ ] route safe total
-- [ ] comment
-- [ ] video Detail / creator Only overlap - refactorizing needed
-- [ ] videoDetail view
+- [x] comment
+- [ ] video Detail / creator Only overlap - refactorizing needed / isCreator
+- [ ] comment css
+- [ ] videoDetail css
 - [ ] editProfile css
 - [ ] videoBlock not responsive
-- [ ] refactorizing videoPlayer.jss
+- [ ] refactorizing videoPlayer.js
+- [ ] viewNum & commentNum
+- [ ] id comparison in pug
+- [ ] erase creatorName to populate
 
 ## Questions:
 
 - [x] get private email from github -> use passport-github2
 - [x] why no formatonsave :(
+- [x] route protection only on get
+- [x] route safe for post?
 - [ ] regenerator-runtime
 - [ ] Is it okay with pug in server?
 - [ ] Do I have to add main.js on main.pug?
 - [ ] why does nodemon restarts multiple time?
 - [ ] where to put browsersync?
-- [ ] image(video) crop problem
-- [ ] route protection only on get
-- [ ] remove file sync
 - [ ] localsMiddleware run multiple time
+- [ ] image(video) crop problem
+- [ ] remove file sync
 - [ ] user.\_id === currentUser.\_id in user detail? not controller?
 - [ ] how to manage token :( Backbutton no route safe for a while

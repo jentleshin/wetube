@@ -24,21 +24,28 @@ export const postAddComment = async (req, res) => {
     const user = await User.findById(creator);
     user.comments.push(newComment);
     user.save();
+    res.json({ currentUserName: user.name, commentId: newComment.id });
   } catch (error) {
     console.log(error);
     res.status(400);
   } finally {
     res.status(200);
-    res.end();
   }
 };
 
 export const postDeleteComment = async (req, res) => {
   try {
     const commentId = req.params.id;
-    const { video, creator } = await Comment.findByIdAndDelete(commentId);
+    const {
+      video: videoId,
+      creator: creatorId,
+    } = await Comment.findByIdAndDelete(commentId);
+    const video = await Video.findById(videoId);
     video.comments.pull(commentId);
+    video.save();
+    const creator = await User.findById(creatorId);
     creator.comments.pull(commentId);
+    creator.save();
   } catch (error) {
     console.log(error);
     res.status(400);

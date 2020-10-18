@@ -27,14 +27,14 @@ block content
             
             ul.videoDetail__commentList#jsCommentList
                 each comment in video.comments
-                    li 
+                    li(id=`${comment.id}`)
                         div=comment.creator.name
                         div=comment.text
-                        if (currentUser.id === comment.creator.id)
+                        if (currentUser && currentUser.id === comment.creator.id)
                             button
                                 span.material-icons clear
             if (currentUser)
-                form(action=routes.addComment({fullRoute: true, id:video.id}), method="post")
-                    textarea(placeHolder="Your comment", name="text", required=true)
+                form#jsAddCommentForm
+                    textArea(placeHolder="Your comment", required=true)
                     input(type="submit", value="Add Comment")
             

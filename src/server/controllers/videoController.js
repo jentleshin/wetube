@@ -112,10 +112,8 @@ export const deleteVideo = async (req, res) => {
 
   try {
     const { fileUrl } = await Video.findByIdAndDelete(id);
-    const videoIndex = currentUser.videos.findIndex(
-      (videoId) => videoId === id
-    );
-    await currentUser.videos.splice(videoIndex, 1);
+
+    await currentUser.videos.pull(id);
     await currentUser.save();
 
     fs.unlink(fileUrl);

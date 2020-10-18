@@ -25,6 +25,7 @@ const FACEBOOK_LOGIN_CALLBACK = "/auth/facebook/callback";
 const API = "/api";
 const INCREMENT_VIEW = "/:id/increment-view";
 const ADD_COMMENT = "/:id/add-comment";
+const DELETE_COMMENT = "/:id/delete-comment";
 
 const routes = {
   api: API,
@@ -32,6 +33,8 @@ const routes = {
     fullRoute && id ? `/api/${id}/increment-view` : INCREMENT_VIEW,
   addComment: ({ fullRoute, id } = {}) =>
     fullRoute && id ? `/api/${id}/add-comment` : ADD_COMMENT,
+  deleteComment: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/api/${id}/delete-comment` : DELETE_COMMENT,
   //   global: {
   home: HOME,
   join: JOIN,
