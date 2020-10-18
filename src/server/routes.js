@@ -24,11 +24,14 @@ const FACEBOOK_LOGIN_CALLBACK = "/auth/facebook/callback";
 //API
 const API = "/api";
 const INCREMENT_VIEW = "/:id/increment-view";
+const ADD_COMMENT = "/:id/add-comment";
 
 const routes = {
   api: API,
   incrementView: ({ fullRoute, id } = {}) =>
-    fullRoute && id ? `/api/${id}/${INCREMENT_VIEW}` : INCREMENT_VIEW,
+    fullRoute && id ? `/api/${id}/increment-view` : INCREMENT_VIEW,
+  addComment: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/api/${id}/add-comment` : ADD_COMMENT,
   //   global: {
   home: HOME,
   join: JOIN,

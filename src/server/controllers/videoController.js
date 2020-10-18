@@ -62,7 +62,11 @@ export const videoDetail = async (req, res) => {
   const id = req.params.id;
 
   try {
-    const video = await Video.findById(id);
+    const video = await Video.findById(id).populate({
+      path: "comments",
+      populate: "creator",
+      options: { sort: { _id: 1 } },
+    });
     const currentUser = req.user;
     const isCreator = currentUser
       ? currentUser._id.equals(video.creator)
@@ -137,6 +141,7 @@ export const postIncrementView = async (req, res) => {
     res.status(200);
   }
 };
+
 // export const localsCurrentUserVideo = async (req, res, next) => {
 //   try {
 //     const currentUser = req.user;

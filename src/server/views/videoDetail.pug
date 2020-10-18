@@ -24,3 +24,17 @@ block content
                 span.videoDetail__comment-number 1 comment
             else  
                 span.videoDetail__comment-number #{video.comments.length} comments
+            
+            ul.videoDetail__commentList#jsCommentList
+                each comment in video.comments
+                    li 
+                        div=comment.creator.name
+                        div=comment.text
+                        if (currentUser.id === comment.creator.id)
+                            button
+                                span.material-icons clear
+            if (currentUser)
+                form(action=routes.addComment({fullRoute: true, id:video.id}), method="post")
+                    textarea(placeHolder="Your comment", name="text", required=true)
+                    input(type="submit", value="Add Comment")
+            

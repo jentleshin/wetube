@@ -29,7 +29,6 @@ const incrementView = () => {
       return response.json();
     })
     .then((json) => {
-      console.log(json);
       viewNum.innerHTML = JSON.stringify(json);
     });
 };
