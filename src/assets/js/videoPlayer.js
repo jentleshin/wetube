@@ -10,6 +10,7 @@ let fullscreenBtn;
 let currentTimeDisplay;
 let durationDisplay;
 let timeLine;
+let viewNum;
 
 //icons
 const PLAY_ARROW_ICON = `<span class ="material-icons"> play_arrow </span>`;
@@ -18,6 +19,20 @@ const VOLUME_UP_ICON = `<span class ="material-icons"> volume_up </span>`;
 const VOLUME_OFF_ICON = `<span class ="material-icons"> volume_off </span>`;
 const FULLSCREEN_ICON = `<span class ="material-icons"> fullscreen </span>`;
 const FULLSCREEN_EXIT_ICON = `<span class ="material-icons"> fullscreen_exit </span>`;
+
+//api
+const incrementView = () => {
+  const url = window.location.href;
+  const videoId = url.split("videos/")[1];
+  fetch(`/api/${videoId}/increment-view`, { method: "POST" })
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      console.log(json);
+      viewNum.innerHTML = JSON.stringify(json);
+    });
+};
 
 //runTime
 let savedTime = null;
@@ -116,6 +131,7 @@ const setupTimeControls = () => {
     pauseVideo();
     updateTimeLine();
     displayCurrentTime(timeFormat);
+    incrementView();
   });
   video.removeEventListener("loadedmetadata", setupTimeControls);
 };
@@ -139,6 +155,7 @@ const init = () => {
   currentTimeDisplay = videoPlayer.querySelector("#jsCurrentTime");
   durationDisplay = videoPlayer.querySelector("#jsTotalTime");
   timeLine = videoPlayer.querySelector("#jsTimeLine");
+  viewNum = document.querySelector("#jsViewNum");
 
   video.addEventListener("loadedmetadata", setupTimeControls);
   playBtn.addEventListener("click", togglePlay);

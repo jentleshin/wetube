@@ -123,6 +123,20 @@ export const deleteVideo = async (req, res) => {
   }
 };
 
+export const postIncrementView = async (req, res) => {
+  try {
+    const videoId = req.params.id;
+    const video = await Video.findById(videoId);
+    video.views++;
+    video.save();
+    res.json(video.views);
+  } catch (error) {
+    console.log(error);
+    res.status(400);
+  } finally {
+    res.status(200);
+  }
+};
 // export const localsCurrentUserVideo = async (req, res, next) => {
 //   try {
 //     const currentUser = req.user;

@@ -11,7 +11,9 @@ block content
                 //- differece between video.fileUrl and `/${video.fileUrl}`
             .videoDetail__info
                 h4.videoDetail__title=video.title
-                h5.videoDetail__views #{video.views} views
+                h5.videoDetail__views
+                    span#jsViewNum #{video.views}
+                    span &nbspviews
                 p.videoDetail__description=video.description
                 if (isCreator)
                     a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video

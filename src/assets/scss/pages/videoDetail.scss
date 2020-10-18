@@ -2,9 +2,14 @@
   display: grid;
   grid-template-columns: 1fr 300px;
   grid-gap: 30px;
-
-  .videoDetail__info {
-    background-color: $lineColor;
+  .videoDetail__wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .videoDetail__info {
+      border: 1px solid $lineColor;
+      // background-color: $lineColor;
+    }
   }
 
   .videoDetail__comments {

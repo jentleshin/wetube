@@ -21,8 +21,14 @@ const GITHUB_LOGIN = "/auth/github";
 const GITHUB_LOGIN_CALLBACK = "/auth/github/callback";
 const FACEBOOK_LOGIN = "/auth/facebook";
 const FACEBOOK_LOGIN_CALLBACK = "/auth/facebook/callback";
+//API
+const API = "/api";
+const INCREMENT_VIEW = "/:id/increment-view";
 
 const routes = {
+  api: API,
+  incrementView: ({ fullRoute, id } = {}) =>
+    fullRoute && id ? `/api/${id}/${INCREMENT_VIEW}` : INCREMENT_VIEW,
   //   global: {
   home: HOME,
   join: JOIN,
