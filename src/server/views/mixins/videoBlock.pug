@@ -7,7 +7,7 @@ mixin videoBlock(video = {})
             h4.videoBlock__title=video.title
             h5.videoBlock__rest
                 span
-                    a.videoBlock__creator(href=routes.userDetail({fullRoute: true, id: video.creator}))=video.creatorName
+                    a.videoBlock__creator(href=routes.userDetail({fullRoute: true, id: video.creator}))=video.creator.name
                 span &nbsp·&nbsp
                 span.videoBlock__views #{video.views} views
         //-  See Detail

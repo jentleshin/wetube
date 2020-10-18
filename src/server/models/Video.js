@@ -23,10 +23,6 @@ const VideoSchema = new mongoose.Schema({
     ref: "User",
     required: "Creator is required",
   },
-  creatorName: {
-    type: String,
-    required: "CreatorName is required",
-  },
   comments: [
     {
       type: mongoose.Schema.Types.ObjectId,

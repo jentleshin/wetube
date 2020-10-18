@@ -27,9 +27,10 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] logout
 - [x] private only to creator only
 - [x] image MULTER
+- [x] erase creatorName to populate
+- [x] comment
 - [ ] 3000 -> 4000 github login
 - [ ] route safe total
-- [x] comment
 - [ ] video Detail / creator Only overlap - refactorizing needed / isCreator
 - [ ] comment css
 - [ ] videoDetail css
@@ -38,7 +39,6 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] refactorizing videoPlayer.js
 - [ ] viewNum & commentNum
 - [ ] id comparison in pug
-- [ ] erase creatorName to populate
 
 ## Questions:
 

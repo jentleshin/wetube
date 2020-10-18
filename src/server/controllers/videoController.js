@@ -7,6 +7,10 @@ import { promises as fs } from "fs";
 export const home = async (req, res) => {
   try {
     const videos = await Video.find({}).sort({ _id: -1 }); //what does it mean
+    await Video.populate(videos, {
+      path: "creator",
+      select: { name: 1, avatarUrl: 1 },
+    });
     res.render("home", { pageTitle: "Home", videos });
   } catch (error) {
     console.log(error);
@@ -36,7 +40,7 @@ export const postUpload = async (req, res) => {
   const {
     body: { title, description },
     file: { path },
-    user: { _id: creator, name: creatorName },
+    user: { _id: creator },
     user: currentUser,
   } = req;
 
@@ -46,7 +50,6 @@ export const postUpload = async (req, res) => {
       title,
       description,
       creator,
-      creatorName,
     });
     await currentUser.videos.push(newVideo.id);
     await currentUser.save();
