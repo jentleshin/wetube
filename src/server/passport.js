@@ -3,8 +3,6 @@ import GithubStrategy from "passport-github2";
 import FacebookStrategy from "passport-facebook";
 import User from "./models/User";
 import routes from "./routes";
-// eslint-disable-next-line
-import regeneratorRuntime from "regenerator-runtime";
 
 passport.use(User.createStrategy());
 passport.use(

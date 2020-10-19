@@ -1,7 +1,5 @@
 import routes from "../routes";
 import Video from "../models/Video";
-// eslint-disable-next-line
-import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
 export const home = async (req, res) => {

@@ -1,8 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
-// eslint-disable-next-line
-import regeneratorRuntime from "regenerator-runtime";
 import { promises as fs } from "fs";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });

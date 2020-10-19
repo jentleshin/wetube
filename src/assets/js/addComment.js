@@ -1,6 +1,4 @@
 import axios from "axios";
-// eslint-disable-next-line
-import regeneratorRuntime from "regenerator-runtime";
 
 const addCommentForm = document.querySelector("#jsAddCommentForm");
 

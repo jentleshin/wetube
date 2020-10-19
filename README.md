@@ -39,6 +39,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [ ] refactorizing videoPlayer.js
 - [ ] viewNum & commentNum
 - [ ] id comparison in pug
+- [ ] id \_id
 
 ## Questions:
 
