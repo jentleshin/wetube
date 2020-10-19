@@ -1,0 +1,25 @@
+mixin videoComments(comments = [])
+    .videoComments
+            .videoComments__header
+                if comments.length === 0
+                    span.videoDetail__comment-number No comment yet
+                else if comments.length === 1
+                    span.videoDetail__comment-number 1 comment
+                else  
+                    span.videoDetail__comment-number #{comments.length} comments
+            
+            ul.videoComments__commentList#jsCommentList
+                each comment in comments
+                    li(id=`${comment.id}`)
+                        .videoComments__content
+                            span.videoComments__creator=comment.creator.name
+                            span &nbsp&nbsp
+                            span.videoComments__text=comment.text
+                        if (currentUser && currentUser.id === comment.creator.id)
+                            button
+                                span.material-icons.md-18 clear
+            .videoComments__footer
+                if (currentUser)
+                    form#jsAddCommentForm
+                        textArea(placeHolder="Your comment", required=true)
+                        input(type="submit", value="Add Comment")

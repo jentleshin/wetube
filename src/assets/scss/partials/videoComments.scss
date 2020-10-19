@@ -1,0 +1,79 @@
+.videoComments {
+  border: 1px solid $lineColor;
+  display: grid;
+  grid-template-rows: max-content 1fr max-content;
+  overflow: hidden;
+  transition: $mainTransition;
+
+  &:hover {
+    box-shadow: 0px 0px 10px $lineColor;
+  }
+  // background-color: black;
+  .videoComments__header {
+    width: 100%;
+    box-shadow: 0px 1px 0px $lineColor;
+    padding: 15px;
+    @extend h1;
+    color: $lineColor;
+    text-transform: uppercase;
+    z-index: 1;
+  }
+  .videoComments__commentList {
+    background-color: mix($bgColor, black, 93%);
+    // mix-blend-mode: multiply;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    @include scrollbars(3px, $lineColor, $bgColor);
+    padding: 20px;
+    padding-right: 12px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+
+    li {
+      display: grid;
+      grid-template-columns: 1fr min-content;
+      //   justify-content: space-between;
+      align-items: flex-start;
+      .videoComments__creator {
+        @extend h4;
+      }
+      .videoComments__text {
+        @extend h5;
+        word-break: break-word;
+      }
+      button {
+        color: $lineColor;
+        .md-18 {
+          font-size: 18px;
+        }
+        // width: 10px;
+        // height: 10px;
+      }
+      //   border: 1px solid $lineColor;
+      //   border-radius: 5px;
+      //   background-color: $lineColor;
+    }
+  }
+  .videoComments__footer {
+    padding: 15px;
+    background-color: $bgColor;
+    box-shadow: 0px -1px 0px $lineColor;
+    z-index: 1;
+
+    textArea {
+      margin-bottom: 15px;
+      border-bottom: 1px solid $lineColor;
+      height: 30px;
+      @extend h1;
+      &::placeholder {
+        @extend h1;
+        color: $lineColor;
+      }
+      &:focus {
+        border-bottom: 1px solid $mainText;
+      }
+    }
+  }
+}

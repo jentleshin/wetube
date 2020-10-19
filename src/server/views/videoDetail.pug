@@ -1,40 +1,20 @@
 extends layouts/main.pug
 include mixins/videoPlayer
+include mixins/videoComments
 
 
 block content
     .videoDetail
         .videoDetail__wrapper
             +videoPlayer(video)
-            //- .videoDetail__player
-            //-     video(src=`/${video.fileUrl}`, controls='true')
-                //- differece between video.fileUrl and `/${video.fileUrl}`
             .videoDetail__info
                 h4.videoDetail__title=video.title
                 h5.videoDetail__views
                     span#jsViewNum #{video.views}
                     span &nbspviews
+                h4 #{video.creator.name}
                 p.videoDetail__description=video.description
                 if (isCreator)
                     a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
-        .videoDetail__comments
-            if video.comments.length === 0
-                span.videoDetail__comment-number No comment yet
-            else if video.comments.length === 1
-                span.videoDetail__comment-number 1 comment
-            else  
-                span.videoDetail__comment-number #{video.comments.length} comments
-            
-            ul.videoDetail__commentList#jsCommentList
-                each comment in video.comments
-                    li(id=`${comment.id}`)
-                        div=comment.creator.name
-                        div=comment.text
-                        if (currentUser && currentUser.id === comment.creator.id)
-                            button
-                                span.material-icons clear
-            if (currentUser)
-                form#jsAddCommentForm
-                    textArea(placeHolder="Your comment", required=true)
-                    input(type="submit", value="Add Comment")
+        +videoComments(video.comments)
             

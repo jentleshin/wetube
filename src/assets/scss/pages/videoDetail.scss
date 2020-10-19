@@ -1,19 +1,18 @@
 .videoDetail {
   display: grid;
-  grid-template-columns: 1fr 300px;
+  grid-template-columns: 1fr 350px;
+  grid-template-rows: calc(100vh - 180px);
   grid-gap: 30px;
   .videoDetail__wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    .videoDetail__info {
-      border: 1px solid $lineColor;
-      // background-color: $lineColor;
-    }
-  }
-
-  .videoDetail__comments {
     border: 1px solid $lineColor;
-    // background-color: black;
+    transition: $mainTransition;
+
+    &:hover {
+      box-shadow: 0px 0px 10px $lineColor;
+    }
+    .videoDetail__info {
+      padding: 15px;
+      border-top: 1px solid $lineColor;
+    }
   }
 }

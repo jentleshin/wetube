@@ -2,6 +2,7 @@
 @import "./config/reset.scss";
 @import "./config/utils";
 @import "./config/inputRange";
+@import "./config/scrollbar";
 
 @import "./main.scss";
 
@@ -12,6 +13,7 @@
 @import "./partials/socialLogin.scss";
 @import "./partials/input.scss";
 @import "./partials/videoPlayer.scss";
+@import "./partials/videoComments.scss";
 
 @import "./pages/videoDetail.scss";
 @import "./pages/userDetail.scss";
