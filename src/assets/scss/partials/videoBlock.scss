@@ -34,21 +34,33 @@
   }
 
   .videoBlock__info {
+    border-top: 1px solid $lineColor;
+
     display: flex;
-    flex-direction: column;
+    gap: 10px;
 
     z-index: 2;
     pointer-events: none;
-    .videoBlock__creator {
-      pointer-events: auto;
+
+    padding: 12px;
+
+    .avatar {
+      width: 36px;
+      height: 36px;
     }
-
-    padding: 10px;
-    padding-top: 8px;
-
-    border-top: 1px solid $lineColor;
-    & > *:not(:last-child) {
-      margin-bottom: 5px;
+    .videoBlock__head {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .videoBlock__title {
+        @extend h4;
+      }
+      .videoBlock__rest {
+        @extend h5;
+        .videoBlock__creator {
+          pointer-events: auto;
+        }
+      }
     }
   }
 }

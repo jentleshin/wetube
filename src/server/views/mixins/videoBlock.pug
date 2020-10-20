@@ -1,14 +1,18 @@
+include avatar
+
 mixin videoBlock(video = {})
     .videoBlock
         a.videoBlock__cover-link(href=routes.videoDetail({fullRoute: true, id: video.id}))
         .videoBlock__thumbnail
             video(src=`/${video.fileUrl}`)
         .videoBlock__info
-            h4.videoBlock__title=video.title
-            h5.videoBlock__rest
-                span
-                    a.videoBlock__creator(href=routes.userDetail({fullRoute: true, id: video.creator}))=video.creator.name
-                span &nbsp·&nbsp
-                span.videoBlock__views #{video.views} views
+            +avatar(video.creator)
+            .videoBlock__head
+                .videoBlock__title=video.title
+                .videoBlock__rest
+                    span
+                        a.videoBlock__creator(href=routes.userDetail({fullRoute: true, id: video.creator}))=video.creator.name
+                    span &nbsp·&nbsp
+                    span.videoBlock__views #{video.views} views
         //-  See Detail
         

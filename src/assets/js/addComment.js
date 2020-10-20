@@ -1,17 +1,20 @@
 import axios from "axios";
-
+import { oneLineTrim } from "common-tags";
 const addCommentForm = document.querySelector("#jsAddCommentForm");
 
 let commentList;
 
-const CLEAR_ICON = `<span class="material-icons"> clear </span>`;
+const CLEAR_ICON = `<span class="material-icons md-18"> clear </span>`;
 
-const addFakeComment = (commentId, currentUserName, text) => {
+const addFakeComment = (commentId, currentUserName, avatarUrl, text) => {
   const li = document.createElement("li");
   const button = document.createElement("button");
 
   li.id = commentId;
-  li.innerHTML = `
+  li.innerHTML = oneLineTrim`
+  <div class="avatar">
+    <div class="avatar__wrapper"><img src="/${avatarUrl}"/></div>
+  </div>
   <div class="videoComments__content">
     <span class="videoComments__creator">${currentUserName}</span>
     &nbsp&nbsp
@@ -20,9 +23,9 @@ const addFakeComment = (commentId, currentUserName, text) => {
   `;
   button.innerHTML = CLEAR_ICON;
   button.addEventListener("click", deleteComment);
-
   li.append(button);
   commentList.append(li);
+  commentList.scrollTo(0, commentList.scrollHeight);
 };
 
 const sendComment = async (text) => {
@@ -34,11 +37,11 @@ const sendComment = async (text) => {
     data: { text },
   });
   const {
-    data: { currentUserName, commentId },
+    data: { avatarUrl, currentUserName, commentId },
     status,
   } = response;
   if (status === 200) {
-    addFakeComment(commentId, currentUserName, text);
+    addFakeComment(commentId, currentUserName, avatarUrl, text);
   }
 };
 

@@ -20,7 +20,7 @@
     background-color: mix($bgColor, black, 93%);
     overflow-y: scroll;
     @include scrollbars(3px, $lineColor, $bgColor);
-    padding: 20px;
+    padding: 15px;
     padding-right: 12px;
 
     display: flex;
@@ -29,18 +29,34 @@
 
     li {
       display: grid;
-      grid-template-columns: 1fr min-content;
+      grid-template-columns: min-content 1fr min-content;
+      grid-template-rows: min-content;
+      grid-gap: 15px;
       //   justify-content: space-between;
       align-items: flex-start;
-      .videoComments__creator {
-        @extend h4;
+      .avatar {
+        width: 32px;
+        // height: 100%;
       }
-      .videoComments__text {
+      .videoComments__content {
+        line-height: 1.5em;
+        margin-top: -0.3em;
+        margin-bottom: -0.5em;
+        font-size: 13px;
         @extend h5;
         word-break: break-word;
+
+        .videoComments__creator {
+          color: mix($lineColor, $mainText, 95%);
+          white-space: nowrap;
+        }
+        .videoComments__text {
+          color: mix($lineColor, $mainText, 65%);
+        }
       }
       button {
         color: $lineColor;
+        margin-top: -1px;
       }
     }
   }
@@ -54,9 +70,14 @@
       margin-bottom: 15px;
       border-bottom: 1px solid $lineColor;
       height: 30px;
-      @extend h1;
+
+      @extend h5;
+      font-size: 13px;
+      line-height: 1.5em;
+
+      color: mix($lineColor, $mainText, 65%);
       &::placeholder {
-        @extend h1;
+        @extend h5;
         color: $lineColor;
       }
       &:focus {

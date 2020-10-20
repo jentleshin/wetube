@@ -1,7 +1,7 @@
 extends layouts/main.pug
 include mixins/videoPlayer
 include mixins/videoComments
-
+include mixins/avatar
 
 block content
     .videoDetail#jsVideoDetail
@@ -9,9 +9,7 @@ block content
             +videoPlayer(video)
             .videoDetail__info
                 .videoDetail__info-left
-                    .videoDetail__avatarUrl-wrapper
-                        .videoDetail__avatarUrl
-                            img(src=`/${video.creator.avatarUrl}`)
+                    +avatar(video.creator)
                     .videoDetail__head
                         h4.videoDetail__title=video.title
                         h5.videoDetail__creator

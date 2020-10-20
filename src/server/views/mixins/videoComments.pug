@@ -11,6 +11,7 @@ mixin videoComments(comments = [])
             ul.videoComments__commentList#jsCommentList
                 each comment in comments
                     li(id=`${comment.id}`)
+                        +avatar(comment.creator)
                         .videoComments__content
                             span.videoComments__creator=comment.creator.name
                             |&nbsp&nbsp

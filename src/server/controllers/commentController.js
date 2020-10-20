@@ -24,7 +24,11 @@ export const postAddComment = async (req, res) => {
     const user = await User.findById(creator);
     user.comments.push(newComment);
     user.save();
-    res.json({ currentUserName: user.name, commentId: newComment.id });
+    res.json({
+      avatarUrl: user.avatarUrl,
+      currentUserName: user.name,
+      commentId: newComment.id,
+    });
   } catch (error) {
     console.log(error);
     res.status(400);
