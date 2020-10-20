@@ -13,7 +13,7 @@ mixin videoComments(comments = [])
                     li(id=`${comment.id}`)
                         .videoComments__content
                             span.videoComments__creator=comment.creator.name
-                            span &nbsp&nbsp
+                            |&nbsp&nbsp
                             span.videoComments__text=comment.text
                         if (currentUser && currentUser.id === comment.creator.id)
                             button

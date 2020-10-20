@@ -8,18 +8,19 @@ const CLEAR_ICON = `<span class="material-icons"> clear </span>`;
 
 const addFakeComment = (commentId, currentUserName, text) => {
   const li = document.createElement("li");
-  const div1 = document.createElement("div");
-  const div2 = document.createElement("div");
   const button = document.createElement("button");
 
   li.id = commentId;
-  div1.innerText = currentUserName;
-  div2.innerText = text;
+  li.innerHTML = `
+  <div class="videoComments__content">
+    <span class="videoComments__creator">${currentUserName}</span>
+    &nbsp&nbsp
+    <span class="videoComments__text">${text}</span>
+  </div>
+  `;
   button.innerHTML = CLEAR_ICON;
   button.addEventListener("click", deleteComment);
 
-  li.append(div1);
-  li.append(div2);
   li.append(button);
   commentList.append(li);
 };
