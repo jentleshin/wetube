@@ -2,9 +2,7 @@
   border: 1px solid $lineColor;
   display: grid;
   grid-template-rows: max-content 1fr max-content;
-  overflow: hidden;
   transition: $mainTransition;
-
   &:hover {
     box-shadow: 0px 0px 10px $lineColor;
   }
@@ -20,9 +18,7 @@
   }
   .videoComments__commentList {
     background-color: mix($bgColor, black, 93%);
-    // mix-blend-mode: multiply;
     overflow-y: scroll;
-    overflow-x: hidden;
     @include scrollbars(3px, $lineColor, $bgColor);
     padding: 20px;
     padding-right: 12px;
@@ -48,12 +44,7 @@
         .md-18 {
           font-size: 18px;
         }
-        // width: 10px;
-        // height: 10px;
       }
-      //   border: 1px solid $lineColor;
-      //   border-radius: 5px;
-      //   background-color: $lineColor;
     }
   }
   .videoComments__footer {

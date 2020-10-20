@@ -4,16 +4,24 @@ include mixins/videoComments
 
 
 block content
-    .videoDetail
-        .videoDetail__wrapper
+    .videoDetail#jsVideoDetail
+        .videoDetail__wrapper#jsVideoDetailWrapper
             +videoPlayer(video)
             .videoDetail__info
-                h4.videoDetail__title=video.title
-                h5.videoDetail__views
-                    span#jsViewNum #{video.views}
-                    span &nbspviews
-                h4 #{video.creator.name}
-                p.videoDetail__description=video.description
+                .videoDetail__info-left
+                    .videoDetail__avatarUrl-wrapper
+                        .videoDetail__avatarUrl
+                            img(src=`/${video.creator.avatarUrl}`)
+                    .videoDetail__head
+                        h4.videoDetail__title=video.title
+                        h5.videoDetail__creator
+                            span #{video.creator.name}
+                .videoDetail__info-right
+                    h5#jsViewNum #{video.views}
+                        span &nbspviews
+                        span &nbsp·&nbsp
+                        span 2020-10-20
+                //- p.videoDetail__description=video.description
                 if (isCreator)
                     a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
         +videoComments(video.comments)
