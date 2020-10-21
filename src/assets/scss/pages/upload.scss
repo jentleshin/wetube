@@ -1,0 +1,26 @@
+.upload {
+  padding-left: 120px;
+  padding-right: 120px;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 60px;
+  align-items: start;
+  .video__wrapper {
+    width: 400px;
+    .video {
+      background: white;
+      padding-bottom: 56.25%;
+      position: relative;
+      overflow: hidden;
+      video {
+        position: absolute;
+      }
+    }
+  }
+  .upload__form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    // display: contents;
+  }
+}

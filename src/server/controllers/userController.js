@@ -66,6 +66,7 @@ export const userDetail = async (req, res) => {
       const targetUserPopulated = await User.findById(targetUserId).populate({
         path: "videos",
         options: { sort: { _id: -1 } },
+        populate: { path: "creator", select: { name: 1, avatarUrl: 1 } },
       });
       res.render("userDetail", {
         pageTitle: "User Detail",
@@ -87,6 +88,7 @@ export const currentUserDetail = async (req, res) => {
       .populate({
         path: "videos",
         options: { sort: { _id: -1 } },
+        populate: { path: "creator", select: { name: 1, avatarUrl: 1 } },
       })
       .execPopulate();
 

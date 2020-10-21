@@ -14,3 +14,7 @@
     color: $mainText;
   }
 }
+.simple-textarea {
+  @extend.simple-input;
+  height: 180px;
+}
