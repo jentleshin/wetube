@@ -2,7 +2,7 @@ const upload = document.querySelector("#jsUpload");
 
 if (upload) {
   const fileInput = upload.querySelector("#file");
-  const video = upload.querySelector("video");
+  const video = upload.querySelector("#jsVideoContainer video");
   fileInput.addEventListener("input", () => {
     const videoFile = fileInput.files[0];
     let reader = new FileReader();
@@ -12,6 +12,5 @@ if (upload) {
     };
 
     reader.readAsDataURL(videoFile);
-    video.play();
   });
 }

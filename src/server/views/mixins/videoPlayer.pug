@@ -1,6 +1,6 @@
 mixin videoPlayer(video = {})
     .videoPlayer#jsVideoPlayer
-        .videoPlayer__controls
+        .videoPlayer__controls#jsVideoControl
             button.videoPlayer__play#jsPlayBtn
                 span.material-icons play_arrow
             .videoPlayer__time  
@@ -14,4 +14,7 @@ mixin videoPlayer(video = {})
             button.videoPlayer__full-screen#jsFullScreenBtn
                 span.material-icons fullscreen
         .videoPlayer__video#jsVideoContainer
-            video(src=`/${video.fileUrl}`)
+            if (video.fileUrl)
+                video(src=`/${video.fileUrl}`)
+            else
+                video

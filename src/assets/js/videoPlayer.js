@@ -4,6 +4,7 @@ const videoPlayer = document.querySelector("#jsVideoPlayer");
 
 //assign when videoPlayer exists
 let video;
+let controls;
 let playBtn;
 let volumeBtn;
 let fullscreenBtn;
@@ -80,7 +81,11 @@ const toggleFullScreen = () => {
   }
 };
 
-//time display//
+//display//
+const displayControls = () => {
+  controls.style.display = "grid";
+};
+
 const displayCurrentTime = (timeFormat) => {
   const currentTime = Math.floor(video.currentTime);
 
@@ -130,7 +135,9 @@ const setupTimeControls = () => {
     pauseVideo();
     updateTimeLine();
     displayCurrentTime(timeFormat);
-    incrementView();
+    if (viewNum) {
+      incrementView();
+    }
   });
   video.removeEventListener("loadedmetadata", setupTimeControls);
 };
@@ -147,16 +154,18 @@ const handleDrag = () => {
 };
 
 const init = () => {
+  controls = videoPlayer.querySelector("#jsVideoControl");
   playBtn = videoPlayer.querySelector("#jsPlayBtn");
-  volumeBtn = videoPlayer.querySelector("#jsVolumeBtn");
-  fullscreenBtn = videoPlayer.querySelector("#jsFullScreenBtn");
-  video = videoPlayer.querySelector("#jsVideoContainer video");
   currentTimeDisplay = videoPlayer.querySelector("#jsCurrentTime");
   durationDisplay = videoPlayer.querySelector("#jsTotalTime");
   timeLine = videoPlayer.querySelector("#jsTimeLine");
+  volumeBtn = videoPlayer.querySelector("#jsVolumeBtn");
+  fullscreenBtn = videoPlayer.querySelector("#jsFullScreenBtn");
+  video = videoPlayer.querySelector("#jsVideoContainer video");
   viewNum = document.querySelector("#jsViewNum");
 
   video.addEventListener("loadedmetadata", setupTimeControls);
+  video.addEventListener("loadeddata", displayControls);
   playBtn.addEventListener("click", togglePlay);
   volumeBtn.addEventListener("click", toggleMute);
   fullscreenBtn.addEventListener("click", toggleFullScreen);
