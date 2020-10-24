@@ -15,7 +15,7 @@ if (videoDetail) {
     document.removeEventListener("DOMContentLoaded", handleOnce);
   });
 
-  const ro = new ResizeObserver((entries, observer) => {
+  const ro = new ResizeObserver((entries) => {
     for (const entry of entries) {
       const { height } = entry.contentRect;
       clearTimeout(timer);

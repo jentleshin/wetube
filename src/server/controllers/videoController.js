@@ -24,6 +24,10 @@ export const search = async (req, res) => {
     const videos = await Video.find({
       title: { $regex: searchingBy, $options: "i" },
     }).sort({ _id: -1 });
+    await Video.populate(videos, {
+      path: "creator",
+      select: { name: 1, avatarUrl: 1 },
+    });
     res.render("search", { pageTitle: "Search", searchingBy, videos });
   } catch (error) {
     console.log(error);
