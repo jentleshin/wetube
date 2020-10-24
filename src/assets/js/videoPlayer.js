@@ -30,7 +30,8 @@ const incrementView = () => {
       return response.json();
     })
     .then((json) => {
-      viewNum.innerHTML = JSON.stringify(json);
+      console.log(JSON.stringify(json));
+      viewNum.innerText = JSON.stringify(json);
     });
 };
 
