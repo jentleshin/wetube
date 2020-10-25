@@ -7,6 +7,7 @@ block content
             +videoPlayer(video)
         form.upload__form(action=routes.upload({fullRoute: true}), method="post", enctype="multipart/form-data")
             input.simple-input(type="file", id="file", name="videoFile", required=true, accept="video/*")
+            input.simple-input#jsRecordButton(type="button", value="Record Video")
             input.simple-input(type="text", placeHolder="Title", name="title", required=true)
             textarea.simple-textarea(placeHolder="Descrition", name="description", required=true)
             input.simple-input(type="submit", value="Upload Video")
