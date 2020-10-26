@@ -4,7 +4,7 @@ mixin videoBlock(video = {})
     .videoBlock
         a.videoBlock__cover-link(href=routes.videoDetail({fullRoute: true, id: video.id}))
         .videoBlock__thumbnail
-            video(src=`/${video.fileUrl}`)
+            video(src=`${video.fileUrl}`)
         .videoBlock__info
             +avatar(video.creator)
             .videoBlock__head

@@ -1,8 +1,26 @@
 import routes from "./routes";
 import multer from "multer";
+import multerS3 from "multer-s3";
+import aws from "aws-sdk";
 import Video from "./models/Video";
 
-const multerVideo = multer({ dest: "uploads/videos/" });
+const creds = new aws.Credentials({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
+});
+const s3 = new aws.S3({
+  credentials: creds,
+  region: "ap-northeast-1",
+});
+
+const multerVideo = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: "wetube-jentleshin/video",
+  }),
+});
+// const multerVideo = multer({ dest: "uploads/videos/" });
 export const uploadVideo = multerVideo.single("videoFile");
 
 const multerAvatar = multer({ dest: "uploads/avatars/" });

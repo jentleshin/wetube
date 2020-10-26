@@ -15,6 +15,6 @@ mixin videoPlayer(video = {})
                 span.material-icons fullscreen
         .videoPlayer__video#jsVideoContainer
             if (video.fileUrl)
-                video(src=`/${video.fileUrl}`)
+                video(src=`${video.fileUrl}`)
             else
                 video

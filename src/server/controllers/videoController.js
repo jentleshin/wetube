@@ -41,11 +41,10 @@ export const getUpload = (req, res) =>
 export const postUpload = async (req, res) => {
   const {
     body: { title, description },
-    file: { path },
+    file: { location: path },
     user: { _id: creator },
     user: currentUser,
   } = req;
-
   try {
     const newVideo = await Video.create({
       fileUrl: path,
@@ -80,7 +79,7 @@ export const videoDetail = async (req, res) => {
       .execPopulate();
     const currentUser = req.user;
     const isCreator = currentUser
-      ? currentUser._id.equals(video.creator)
+      ? currentUser._id.equals(video.creator._id)
       : false;
     res.render("videoDetail", { pageTitle: "Video Detail", video, isCreator });
   } catch (error) {
