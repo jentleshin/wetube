@@ -114,20 +114,26 @@ export const postEditVideo = async (req, res) => {
   }
 };
 
-export const deleteVideo = async (req, res) => {
+export const deleteVideo = async (req, res, next) => {
   const {
     params: { id },
     user: currentUser,
   } = req;
 
   try {
-    const { fileUrl } = await Video.findByIdAndDelete(id);
+    //delet video
+    const { fileUrl, comments } = await Video.findByIdAndDelete(id);
 
+    //locals variables
+    res.locals.fileUrl = fileUrl;
+    res.locals.comments = comments;
+
+    //delete video from user (creator)
     await currentUser.videos.pull(id);
     await currentUser.save();
 
-    fs.unlink(fileUrl);
     res.redirect(routes.home);
+    next();
   } catch (error) {
     console.log(error);
     res.redirect(routes.home);

@@ -58,3 +58,20 @@ export const postDeleteComment = async (req, res) => {
     res.end();
   }
 };
+
+export const deleteVideoComments = async (req, res, next) => {
+  const comments = res.locals.comments;
+  try {
+    comments.forEach(async (commentId) => {
+      //delete comment
+      const { creator: creatorId } = await Comment.findByIdAndDelete(commentId);
+      //delete comment from creator
+      const creator = await User.findById(creatorId);
+      creator.comments.pull(commentId);
+      creator.save();
+    });
+    next();
+  } catch (error) {
+    console.log(error);
+  }
+};
