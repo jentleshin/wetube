@@ -3,8 +3,6 @@ import multer from "multer";
 import multerS3 from "multer-s3";
 import aws from "aws-sdk";
 import Video from "./models/Video";
-//transfer
-import fetch from "node-fetch";
 
 const creds = new aws.Credentials({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -39,57 +37,33 @@ export const deleteVideoFromAWS = async (req, res) => {
   }
 };
 
-// export const changeVideoFileUrl = async (req, res) => {
-//   const videos = await Video.find({});
-//   videos.forEach(async (video) => {
-//     if (video.fileUrl.includes("video/")) {
-//       return;
-//     } else {
-//       const copy = video.fileUrl + "video/076b09d7c04ace1e0bd39ce55d7d7cb9";
-//       console.log(copy);
-//       video.fileUrl = copy;
-//       video.save();
-//     }
-//   });
-// };
-// export const transferVideo = async (req, res) => {
-//   const videos = await Video.find({});
-//   videos.forEach(async (video) => {
-//     if (video.fileUrl.includes("uploads")) {
-//       const fileName = video.fileUrl.split("videos/")[1];
-//       console.log(fileName);
-//       try {
-//         //fetch
-//         const response = await fetch(`http://localhost:4000/${video.fileUrl}`, {
-//           method: "GET",
-//         });
+const multerAvatar = multer({
+  storage: multerS3({
+    s3,
+    acl: "public-read",
+    bucket: process.env.AWS_BUCKET_AVATAR,
+  }),
+});
+export const uploadAvatarToAWS = multerAvatar.single("avatar");
 
-//         //upload to s3
-//         const params = {
-//           Bucket: "wetube-jentleshin",
-//           Key: `${fileName}`,
-//           Body: response.body,
-//           ACL: "public-read",
-//         };
-//         const s3Response = await s3.upload(params).promise();
-
-//         video.fileUrl = s3Response.Location;
-//         video.save();
-//       } catch (error) {
-//         console.log(error);
-//       } finally {
-//         console.log(
-//           `Upload success ${fileName}, location: ${s3Response.Location} saved
-//           to ${video.fileUrl}`
-//         );
-//         res.end();
-//       }
-//     }
-//   });
-// };
-
-const multerAvatar = multer({ dest: "uploads/avatars/" });
-export const uploadAvatar = multerAvatar.single("avatar");
+export const deleteAvatarFromAWS = async (req, res) => {
+  if (res.locals.avatarUrl) {
+    try {
+      const key = res.locals.avatarUrl.split("avatar/")[1];
+      const params = {
+        Bucket: process.env.AWS_BUCKET_AVATAR,
+        Key: key,
+      };
+      const response = await s3.deleteObject(params).promise();
+      res.end();
+    } catch (error) {
+      console.log(error);
+      res.redirect(routes.home);
+    }
+  } else {
+    res.end();
+  }
+};
 
 export const localsMiddleware = (req, res, next) => {
   res.locals.siteName = "WETUBE";

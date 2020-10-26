@@ -7,13 +7,22 @@ import {
   userDetail,
   currentUserDetail,
 } from "../controllers/userController";
-import { privateOnly, uploadAvatar } from "../middlewares";
+import {
+  deleteAvatarFromAWS,
+  privateOnly,
+  uploadAvatarToAWS,
+} from "../middlewares";
 import routes from "../routes";
 
 export const userRouter = express.Router();
 
 userRouter.get(routes.editProfile(), privateOnly, getEditProfile);
-userRouter.post(routes.editProfile(), uploadAvatar, postEditProfile);
+userRouter.post(
+  routes.editProfile(),
+  uploadAvatarToAWS,
+  postEditProfile,
+  deleteAvatarFromAWS
+);
 userRouter.get(routes.changePassword(), privateOnly, getChangePassword);
 userRouter.post(routes.changePassword(), postChangePassword);
 userRouter.get(routes.currentUserDetail(), privateOnly, currentUserDetail);

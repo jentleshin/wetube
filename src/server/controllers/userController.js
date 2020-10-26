@@ -1,7 +1,6 @@
 import passport from "passport";
 import routes from "../routes";
 import User from "../models/User";
-import { promises as fs } from "fs";
 
 export const getJoin = (req, res) => res.render("join", { pageTitle: "Join" });
 export const postJoin = async (req, res, next) => {
@@ -105,19 +104,20 @@ export const getEditProfile = (req, res) => {
   const currentUser = req.user;
   res.render("editProfile", { pageTitle: "Edit Profile", user: currentUser });
 };
-export const postEditProfile = async (req, res) => {
+export const postEditProfile = async (req, res, next) => {
   //change profile
   try {
     const {
       body: { name, email },
-      file: { path: avatarUrl },
+      file: { location: avatarUrl },
     } = req;
+
     if (!avatarUrl && !name && !email) {
       res.redirect(routes.editProfile({ fullRoute: true }));
     } else {
       const currentUser = req.user;
       if (avatarUrl && currentUser.avatarUrl) {
-        fs.unlink(currentUser.avatarUrl);
+        res.locals.avatarUrl = currentUser.avatarUrl;
       }
 
       await User.findByIdAndUpdate(currentUser._id, {
@@ -128,6 +128,7 @@ export const postEditProfile = async (req, res) => {
     }
 
     res.redirect(routes.currentUserDetail({ fullRoute: true }));
+    next();
   } catch (error) {
     console.log(error);
     res.redirect(routes.editProfile({ fullRoute: true }));

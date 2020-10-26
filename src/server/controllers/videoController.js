@@ -1,6 +1,5 @@
 import routes from "../routes";
 import Video from "../models/Video";
-import { promises as fs } from "fs";
 
 export const home = async (req, res) => {
   try {
