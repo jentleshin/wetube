@@ -12,24 +12,23 @@ const creds = new aws.Credentials({
 });
 const s3 = new aws.S3({
   credentials: creds,
-  region: "ap-northeast-1",
+  region: process.env.AWS_REGION,
 });
 
 const multerVideo = multer({
   storage: multerS3({
     s3,
     acl: "public-read",
-    bucket: "wetube-jentleshin/video",
+    bucket: process.env.AWS_BUCKET_VIDEO,
   }),
 });
-// const multerVideo = multer({ dest: "uploads/videos/" });
-export const uploadVideo = multerVideo.single("videoFile");
+export const uploadVideoToAWS = multerVideo.single("videoFile");
 
-export const deletVideoFromAWS = async (req, res) => {
+export const deleteVideoFromAWS = async (req, res) => {
   try {
     const key = res.locals.fileUrl.split("video/")[1];
     const params = {
-      Bucket: "wetube-jentleshin/video",
+      Bucket: process.env.AWS_BUCKET_VIDEO,
       Key: key,
     };
     const response = await s3.deleteObject(params).promise();

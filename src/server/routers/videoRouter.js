@@ -10,16 +10,16 @@ import {
 } from "../controllers/videoController";
 import {
   creatorOnly,
-  deletVideoFromAWS,
+  deleteVideoFromAWS,
   privateOnly,
-  uploadVideo,
+  uploadVideoToAWS,
 } from "../middlewares";
 import routes from "../routes";
 
 const videoRouter = express.Router();
 
 videoRouter.get(routes.upload(), privateOnly, getUpload);
-videoRouter.post(routes.upload(), uploadVideo, postUpload);
+videoRouter.post(routes.upload(), uploadVideoToAWS, postUpload);
 //should change to creator only
 videoRouter.get(routes.editVideo(), creatorOnly, getEditVideo);
 videoRouter.post(routes.editVideo(), postEditVideo);
@@ -28,7 +28,7 @@ videoRouter.get(
   creatorOnly,
   deleteVideo,
   deleteVideoComments,
-  deletVideoFromAWS
+  deleteVideoFromAWS
 );
 videoRouter.get(routes.videoDetail(), videoDetail);
 
