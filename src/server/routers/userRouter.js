@@ -7,11 +7,8 @@ import {
   userDetail,
   currentUserDetail,
 } from "../controllers/userController";
-import {
-  deleteAvatarFromAWS,
-  privateOnly,
-  uploadAvatarToAWS,
-} from "../middlewares";
+import { deleteAvatarFromAWS, uploadAvatarToAWS } from "../amazonS3";
+import { privateOnly } from "../middlewares";
 import routes from "../routes";
 
 export const userRouter = express.Router();

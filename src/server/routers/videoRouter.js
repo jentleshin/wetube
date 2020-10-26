@@ -8,12 +8,8 @@ import {
   postUpload,
   videoDetail,
 } from "../controllers/videoController";
-import {
-  creatorOnly,
-  deleteVideoFromAWS,
-  privateOnly,
-  uploadVideoToAWS,
-} from "../middlewares";
+import { deleteVideoFromAWS, uploadVideoToAWS } from "../amazonS3";
+import { creatorOnly, privateOnly } from "../middlewares";
 import routes from "../routes";
 
 const videoRouter = express.Router();
