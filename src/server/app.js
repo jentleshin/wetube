@@ -40,7 +40,7 @@ app.use(passport.session());
 app.use(localsMiddleware);
 
 app.use("/uploads", express.static("uploads"));
-app.use("/assets", express.static("dest/assets"));
+app.use("/assets", express.static(__dirname + "/../assets"));
 app.use("/", globalRouter);
 app.use(routes.users, userRouter);
 app.use(routes.videos, videoRouter);

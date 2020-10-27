@@ -31,7 +31,7 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] comment
 - [x] AWS
 - [ ] Deploy
-- [ ] 3000 -> 4000 github login
+- [x] 3000 -> 4000 github login
 - [ ] route safe total
 - [ ] video Detail / creator Only overlap - refactorizing needed / isCreator
 - [ ] comment css

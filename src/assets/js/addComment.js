@@ -13,7 +13,7 @@ const addFakeComment = (commentId, currentUserName, avatarUrl, text) => {
   li.id = commentId;
   li.innerHTML = oneLineTrim`
   <div class="avatar">
-    <div class="avatar__wrapper"><img src="/${avatarUrl}"/></div>
+    <div class="avatar__wrapper"><img src="${avatarUrl}"/></div>
   </div>
   <div class="videoComments__content">
     <span class="videoComments__creator">${currentUserName}</span>
