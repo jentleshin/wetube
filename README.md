@@ -29,6 +29,8 @@ Cloning Youtube with VanillaJS / NodeJS
 - [x] image MULTER
 - [x] erase creatorName to populate
 - [x] comment
+- [x] AWS
+- [ ] Deploy
 - [ ] 3000 -> 4000 github login
 - [ ] route safe total
 - [ ] video Detail / creator Only overlap - refactorizing needed / isCreator

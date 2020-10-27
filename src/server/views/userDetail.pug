@@ -5,7 +5,10 @@ block content
     .user-detail
         .user-profile
             .user-profile__img 
-                img(src=`${user.avatarUrl}`)
+                if (user.avatarUrl)
+                    img(src=`${user.avatarUrl}`)
+                else
+                    div no image yet
             .user-profile__info
                 div name
                 span=user.name
