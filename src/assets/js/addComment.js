@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+import regeneratorRuntime from "regenerator-runtime";
+
 import axios from "axios";
 import { oneLineTrim } from "common-tags";
 const addCommentForm = document.querySelector("#jsAddCommentForm");

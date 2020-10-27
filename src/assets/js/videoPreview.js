@@ -1,3 +1,6 @@
+// eslint-disable-next-line
+import regeneratorRuntime from "regenerator-runtime";
+
 const upload = document.querySelector("#jsUpload");
 
 if (upload) {

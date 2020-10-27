@@ -11,19 +11,20 @@ const pug = () =>
 const babelServer = () =>
   gulp
     .src(routes.server.srcFiles)
-    .pipe(
-      babel({
-        presets: [
-          [
-            "@babel/preset-env",
-            {
-              useBuiltIns: "usage",
-              corejs: 3, // or 2,
-            },
-          ],
-        ],
-      })
-    )
+    .pipe(babel({ presets: ["@babel/preset-env"] }))
+    // .pipe(
+    //   babel({
+    //     presets: [
+    //       [
+    //         "@babel/preset-env",
+    //         {
+    //           useBuiltIns: "usage",
+    //           corejs: 3, // or 2,
+    //         },
+    //       ],
+    //     ],
+    //   })
+    // )
     .pipe(gulp.dest(routes.server.dest));
 
 //bug: restarting multiple times
