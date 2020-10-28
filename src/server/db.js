@@ -2,10 +2,13 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
 
-mongoose.connect(process.env.MONGO_PROD_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(
+  process.env.PRODUCTION ? process.env.MONGO_URL_PROD : process.env.MONGO_URL,
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  }
+);
 
 const db = mongoose.connection;
 const handleOpen = () => console.log("connected to DB");

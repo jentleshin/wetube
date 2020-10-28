@@ -10,7 +10,9 @@ passport.use(
     {
       clientID: process.env.GH_CLIENT_ID,
       clientSecret: process.env.GH_CLIENT_SECRET,
-      callbackURL: `http://localhost:4000${routes.ghLoginCallback}`,
+      callbackURL: `${
+        process.env.PRODUCTION ? process.env.DOMAIN : process.env.LOCALHOST
+      }${routes.ghLoginCallback}`,
       scope: ["user:email"],
     },
     async (_, __, profile, cb) => {
@@ -46,7 +48,9 @@ passport.use(
     {
       clientID: process.env.FB_CLIENT_ID,
       clientSecret: process.env.FB_CLIENT_SECRET,
-      callbackURL: `http://localhost:4000${routes.fbLoginCallback}`,
+      callbackURL: `${
+        process.env.PRODUCTION ? process.env.DOMAIN : process.env.LOCALHOST
+      }${routes.fbLoginCallback}`,
       profileFields: ["id", "displayName", "photos", "email"],
     },
     async (_, __, profile, done) => {
