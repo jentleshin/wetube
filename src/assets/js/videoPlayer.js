@@ -166,7 +166,15 @@ const init = () => {
   viewNum = document.querySelector("#jsViewNum");
 
   video.addEventListener("loadedmetadata", setupTimeControls);
+  if (video.readyState >= 1) {
+    setupTimeControls();
+    video.removeEventListener("loadedmetadata", setupTimeControls);
+  }
   video.addEventListener("loadeddata", displayControls);
+  if (video.readyState >= 2) {
+    displayControls();
+    video.removeEventListener("loadeddata", displayControls);
+  }
   playBtn.addEventListener("click", togglePlay);
   volumeBtn.addEventListener("click", toggleMute);
   fullscreenBtn.addEventListener("click", toggleFullScreen);
