@@ -1,4 +1,5 @@
 mixin avatar(user)
     .avatar
+        a(href=routes.userDetail({fullRoute: true, id: user.id}))
         .avatar__wrapper
             img(src=`${user.avatarUrl}`)

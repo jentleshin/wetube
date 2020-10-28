@@ -13,15 +13,15 @@ block content
                     .videoDetail__head
                         h4.videoDetail__title=video.title
                         h5.videoDetail__creator
-                            span #{video.creator.name}
+                            a(href=routes.userDetail({fullRoute: true, id: video.creator.id})) #{video.creator.name}#{isCreator ? " (me)":""}
                 .videoDetail__info-right
                     h5 
                         span#jsViewNum #{video.views}
                         span &nbspviews
                         span &nbsp·&nbsp
                         span 2020-10-20
-                //- p.videoDetail__description=video.description
-                if (isCreator)
-                    a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
+                    if (isCreator)
+                        h5
+                            a.videoDetail__edit-button(href=routes.editVideo({fullRoute: true, id: video.id})) edit video
         +videoComments(video.comments)
             

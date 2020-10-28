@@ -16,7 +16,10 @@
       padding: 15px;
       border-top: 1px solid $lineColor;
       .videoDetail__info-right {
-        align-self: flex-end;
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: space-between;
+        align-items: flex-end;
       }
       .videoDetail__info-left {
         display: flex;
